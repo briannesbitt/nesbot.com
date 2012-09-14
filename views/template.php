@@ -13,7 +13,7 @@
 <body>
 
 <div id="powered">
-   <a href="http://slimframework.com/" target="_blank"><span class="u">powered by </span><img src="<?=$urlImg?>slim.png" alt="Slim Framework" width="28" height="14" align="absmiddle" /></a>
+   <a href="http://slimframework.com/" target="_blank">powered by <img src="<?=$urlImg?>slim.png" alt="Slim Framework" width="40" height="20" align="absmiddle" /></a>
 </div>
 
 <div id="social">
