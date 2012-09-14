@@ -19,7 +19,7 @@
       <title><?=$post->title?></title>
       <link><?=$this->urlFullFor($post)?></link>
       <author>brian@nesbot.com (Brian Nesbitt)</author>
-      <pubDate><?=$post->posted->toRFC822()?></pubDate>
+      <pubDate><?=$post->posted->toRFC822String()?></pubDate>
       <guid><?=$this->urlFullFor($post)?></guid>
       <description><![CDATA[<?$this->renderPost($post)?>]]></description>
    </item>
