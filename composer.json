@@ -1,0 +1,8 @@
+{
+   "require": {
+      "slim/slim": "1.6.*"
+   },
+   "autoload": {
+        "psr-0": {"Post": "lib/", "Dated": "lib/", "MasterView": "lib/", "BlogView": "lib/"}
+    }
+}
