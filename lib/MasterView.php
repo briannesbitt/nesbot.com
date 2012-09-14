@@ -1,5 +1,5 @@
 <?
-class MasterView extends Slim_View {
+class MasterView extends \Slim\View {
    protected $app;
    protected $env;
    protected $masterTemplate;

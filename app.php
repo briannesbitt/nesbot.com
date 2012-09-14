@@ -17,7 +17,7 @@ else
 
 require 'posts.php';
 
-$app = new Slim(['templates.path' => __DIR__.'/views/', 'mode' => $mode]);
+$app = new \Slim\Slim(['templates.path' => __DIR__.'/views/', 'mode' => $mode]);
 $app->view(new BlogView($app, 'template.php', $posts));
 $env = $app->environment();
 

@@ -1,5 +1,5 @@
 {
-    "hash": "fe21f93c140adda2afcd34486abc3505",
+    "hash": "bc465c390ce06a24f8b050793434da80",
     "packages": [
         {
             "package": "nesbot/carbon",
@@ -7,7 +7,7 @@
         },
         {
             "package": "slim/slim",
-            "version": "1.6.7"
+            "version": "2.1.0"
         }
     ],
     "packages-dev": null,
