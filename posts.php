@@ -4,47 +4,47 @@
 
 $posts_order = []; $posts = [];
 $posts_order["slim-wildcard-routes-last-but-not-least"] = 20;
-$posts[20] = new Post("Slim wildcard routes : Last but not least", "slim-wildcard-routes-last-but-not-least", \Carbon\Carbon::createFromTimestamp(1344051057));
+$posts[20] = new Post("Slim wildcard routes : Last but not least", "slim-wildcard-routes-last-but-not-least", \Carbon\Carbon::createFromTimestamp(1344051577));
 $posts_order["slim-wildcard-routes-improved"] = 19;
-$posts[19] = new Post("Slim wildcard routes improved", "slim-wildcard-routes-improved", \Carbon\Carbon::createFromTimestamp(1341372657));
+$posts[19] = new Post("Slim wildcard routes improved", "slim-wildcard-routes-improved", \Carbon\Carbon::createFromTimestamp(1341373177));
 $posts_order["multilingual-site-using-slim"] = 18;
-$posts[18] = new Post("Multilingual site using Slim", "multilingual-site-using-slim", \Carbon\Carbon::createFromTimestamp(1340767857));
+$posts[18] = new Post("Multilingual site using Slim", "multilingual-site-using-slim", \Carbon\Carbon::createFromTimestamp(1340768377));
 $posts_order["slim-wildcard-routes-via-route-middleware"] = 17;
-$posts[17] = new Post("Slim wildcard routes via route middleware", "slim-wildcard-routes-via-route-middleware", \Carbon\Carbon::createFromTimestamp(1340076657));
+$posts[17] = new Post("Slim wildcard routes via route middleware", "slim-wildcard-routes-via-route-middleware", \Carbon\Carbon::createFromTimestamp(1340077177));
 $posts_order["PHP-on-a-diet-up-and-running-with-slim"] = 16;
-$posts[16] = new Post("PHP on a diet : Up and running with Slim", "PHP-on-a-diet-up-and-running-with-slim", \Carbon\Carbon::createFromTimestamp(1339212657));
+$posts[16] = new Post("PHP on a diet : Up and running with Slim", "PHP-on-a-diet-up-and-running-with-slim", \Carbon\Carbon::createFromTimestamp(1339213177));
 $posts_order["a-quick-microbenchmark-update-PHP-5-4"] = 15;
-$posts[15] = new Post("A \"quick\" microbenchmark update PHP 5.4", "a-quick-microbenchmark-update-PHP-5-4", \Carbon\Carbon::createFromTimestamp(1337916657));
+$posts[15] = new Post("A \"quick\" microbenchmark update PHP 5.4", "a-quick-microbenchmark-update-PHP-5-4", \Carbon\Carbon::createFromTimestamp(1337917177));
 $posts_order["a-quick-microbenchmark"] = 14;
-$posts[14] = new Post("A \"quick\" microbenchmark", "a-quick-microbenchmark", \Carbon\Carbon::createFromTimestamp(1328761857));
+$posts[14] = new Post("A \"quick\" microbenchmark", "a-quick-microbenchmark", \Carbon\Carbon::createFromTimestamp(1328762377));
 $posts_order["CoffeeScript-why-is-function-binding-not-the-default"] = 13;
-$posts[13] = new Post("CoffeeScript : Why is function binding not the default?", "CoffeeScript-why-is-function-binding-not-the-default", \Carbon\Carbon::createFromTimestamp(1327120257));
+$posts[13] = new Post("CoffeeScript : Why is function binding not the default?", "CoffeeScript-why-is-function-binding-not-the-default", \Carbon\Carbon::createFromTimestamp(1327120777));
 $posts_order["sidney-crosby-art-ross-watch-mynhl"] = 12;
-$posts[12] = new Post("Fun Play 2.0 project launch : Sidney Crosby Art Ross Watch and My NHL", "sidney-crosby-art-ross-watch-mynhl", \Carbon\Carbon::createFromTimestamp(1322627457));
+$posts[12] = new Post("Fun Play 2.0 project launch : Sidney Crosby Art Ross Watch and My NHL", "sidney-crosby-art-ross-watch-mynhl", \Carbon\Carbon::createFromTimestamp(1322627977));
 $posts_order["play-2-morphia-logging-error"] = 11;
-$posts[11] = new Post("Using morphia with Play 2.0 and the sl4j logging error", "play-2-morphia-logging-error", \Carbon\Carbon::createFromTimestamp(1322541057));
+$posts[11] = new Post("Using morphia with Play 2.0 and the sl4j logging error", "play-2-morphia-logging-error", \Carbon\Carbon::createFromTimestamp(1322541577));
 $posts_order["now-running-on-play-2-beta"] = 10;
-$posts[10] = new Post("This blog is now running on Play 2.0 BETA", "now-running-on-play-2-beta", \Carbon\Carbon::createFromTimestamp(1322022657));
+$posts[10] = new Post("This blog is now running on Play 2.0 BETA", "now-running-on-play-2-beta", \Carbon\Carbon::createFromTimestamp(1322023177));
 $posts_order["play-framework-accesslog"] = 9;
-$posts[9] = new Post("Play framework accesslog module update", "play-framework-accesslog", \Carbon\Carbon::createFromTimestamp(1321504257));
+$posts[9] = new Post("Play framework accesslog module update", "play-framework-accesslog", \Carbon\Carbon::createFromTimestamp(1321504777));
 $posts_order["my-father-son-relationship"] = 8;
-$posts[8] = new Post("My Father Son relationship: a speech to my Dad on his 70th birthday", "my-father-son-relationship", \Carbon\Carbon::createFromTimestamp(1319599857));
+$posts[8] = new Post("My Father Son relationship: a speech to my Dad on his 70th birthday", "my-father-son-relationship", \Carbon\Carbon::createFromTimestamp(1319600377));
 $posts_order["play-framework-sample-app-JWebUnit-synchronous-ajax"] = 7;
-$posts[7] = new Post("Play framework sample application with JWebUnit and synchronous ajax", "play-framework-sample-app-JWebUnit-synchronous-ajax", \Carbon\Carbon::createFromTimestamp(1318822257));
+$posts[7] = new Post("Play framework sample application with JWebUnit and synchronous ajax", "play-framework-sample-app-JWebUnit-synchronous-ajax", \Carbon\Carbon::createFromTimestamp(1318822777));
 $posts_order["how-much-code-do-you-read"] = 6;
-$posts[6] = new Post("How much code do you read?", "how-much-code-do-you-read", \Carbon\Carbon::createFromTimestamp(1318390257));
+$posts[6] = new Post("How much code do you read?", "how-much-code-do-you-read", \Carbon\Carbon::createFromTimestamp(1318390777));
 $posts_order["day-1-of-my-move-to-a-stand-up-desk"] = 5;
-$posts[5] = new Post("Day 1 of my move to a stand-up desk", "day-1-of-my-move-to-a-stand-up-desk", \Carbon\Carbon::createFromTimestamp(1317699057));
+$posts[5] = new Post("Day 1 of my move to a stand-up desk", "day-1-of-my-move-to-a-stand-up-desk", \Carbon\Carbon::createFromTimestamp(1317699577));
 $posts_order["why-and-how-i-will-switch-to-a-stand-up-desk"] = 4;
-$posts[4] = new Post("Why and How I will switch to a stand-up desk", "why-and-how-i-will-switch-to-a-stand-up-desk", \Carbon\Carbon::createFromTimestamp(1316748657));
+$posts[4] = new Post("Why and How I will switch to a stand-up desk", "why-and-how-i-will-switch-to-a-stand-up-desk", \Carbon\Carbon::createFromTimestamp(1316749177));
 $posts_order["cobertura-module-tricks-with-the-play-framework"] = 3;
-$posts[3] = new Post("Tricks for using the cobertura module with the Play Framework", "cobertura-module-tricks-with-the-play-framework", \Carbon\Carbon::createFromTimestamp(1316575857));
+$posts[3] = new Post("Tricks for using the cobertura module with the Play Framework", "cobertura-module-tricks-with-the-play-framework", \Carbon\Carbon::createFromTimestamp(1316576377));
 $posts_order["ansi-colour-support-for-play-framework-2-preview"] = 2;
-$posts[2] = new Post("ANSI colour support in Windows for the Play! Framework 2.0 preview", "ansi-colour-support-for-play-framework-2-preview", \Carbon\Carbon::createFromTimestamp(1315625457));
+$posts[2] = new Post("ANSI colour support in Windows for the Play! Framework 2.0 preview", "ansi-colour-support-for-play-framework-2-preview", \Carbon\Carbon::createFromTimestamp(1315625977));
 $posts_order["windows-support-for-play-framework-2-preview"] = 1;
-$posts[1] = new Post("Adding initial Windows support for the Play! Framework 2.0 preview", "windows-support-for-play-framework-2-preview", \Carbon\Carbon::createFromTimestamp(1315539057));
+$posts[1] = new Post("Adding initial Windows support for the Play! Framework 2.0 preview", "windows-support-for-play-framework-2-preview", \Carbon\Carbon::createFromTimestamp(1315539577));
 $posts_order["carpenters-house-last-to-get-attention"] = 0;
-$posts[0] = new Post("A carpenter's house is always the last to get the attention it deserves", "carpenters-house-last-to-get-attention", \Carbon\Carbon::createFromTimestamp(1315452657));
+$posts[0] = new Post("A carpenter's house is always the last to get the attention it deserves", "carpenters-house-last-to-get-attention", \Carbon\Carbon::createFromTimestamp(1315453177));
 
 /***** This code is autogenerated by the "genposts.php" script.  Do not hand modify this code! *****/
 
@@ -98,7 +98,7 @@ class Posts implements IPosts {
 
       $i = $this->posts_order[$post->slug];
 
-      return (--$i > 0) ? $this->posts[$i] : null;
+      return (--$i >= 0) ? $this->posts[$i] : null;
    }
 }
 

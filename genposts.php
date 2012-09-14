@@ -112,7 +112,7 @@ class Posts implements IPosts {
 
       $i = $this->posts_order[$post->slug];
 
-      return (--$i > 0) ? $this->posts[$i] : null;
+      return (--$i >= 0) ? $this->posts[$i] : null;
    }
 }
 
