@@ -26,7 +26,7 @@ require 'routes.php';
 $app->configureMode('live', function() use ($app, $env) {
    $env['URLBASE'] = 'http://nesbot.com';
    $env['URLIMG'] = '/img/';
-   $env['URLFULLIMG'] = $env['URLBASE'] . '/img/';
+   $env['URLFULLIMG'] = $env['URLBASE'] . $env['URLIMG'];
    $env['URLCSS'] = '/css/';
    $env['URLJS'] = '/js/';
    $env['GATRACKER'] = 'UA-5684902-5';
@@ -36,7 +36,7 @@ $app->configureMode('live', function() use ($app, $env) {
 $app->configureMode('local', function() use ($app, $env) {
    $env['URLBASE'] = 'http://127.0.0.1';
    $env['URLIMG'] = '/img/';
-   $env['URLFULLIMG'] = $env['URLBASE'] . '/img/';
+   $env['URLFULLIMG'] = $env['URLBASE'] . $env['URLIMG'];
    $env['URLCSS'] = '/css/';
    $env['URLJS'] = '/js/';
    //$env['GATRACKER'] = '';

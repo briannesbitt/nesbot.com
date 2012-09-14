@@ -39,6 +39,7 @@ class MasterView extends \Slim\View {
       else {
          $this->setData('urlBase', $this->urlBase());
          $this->setData('urlImg', $this->urlImg());
+         $this->setData('urlFullImg', $this->urlFullImg());
          $this->setData('urlCss', $this->urlCss());
          $this->setData('urlJs', $this->urlJs());
          $this->setData('isLive', $this->isLive());

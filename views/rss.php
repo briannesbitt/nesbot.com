@@ -8,7 +8,7 @@
    <language>en-us</language>
    <managingEditor>brian@nesbot.com (Brian Nesbitt)</managingEditor>
    <image>
-	   <url>http://nesbot.com/images/logo.gif</url>
+	   <url><?=$urlFullImg?>/logo.gif</url>
 	   <title>Brian Nesbitt's  Blog</title>
 	   <link>http://nesbot.com</link>
    </image>
