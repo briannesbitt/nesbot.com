@@ -22,7 +22,7 @@ function parsePost($dir, $filename)
 
    if (preg_match('/^([0-9]{4})-([0-9]{1,2})-([0-9]{1,2})-(.+)\.php$/', $filename, $matches) === 1)
    {
-      $posted = Dated::create_date($matches[1], $matches[2], $matches[3]);
+      $posted = \Carbon\Carbon::createFromDate($matches[1], $matches[2], $matches[3]);
       $slug = $matches[4];
       $title = getPostTitle($dir.$filename);
       if (strlen($title) > 0)
@@ -54,7 +54,7 @@ function writePosts($posts, $file)
    foreach ($posts as $post)
    {
       $s .= sprintf('$posts_order["%s"] = %s;%s', $post->slug, $cnt, PHP_EOL);
-      $s .= sprintf('$posts[%s] = new Post("%s", "%s", Dated::create_from_timestamp(%d));%s', $cnt, str_replace('"', '\"', $post->title), $post->slug, $post->posted->timestamp, PHP_EOL);
+      $s .= sprintf('$posts[%s] = new Post("%s", "%s", \Carbon\Carbon::createFromTimestamp(%d));%s', $cnt, str_replace('"', '\"', $post->title), $post->slug, $post->posted->timestamp, PHP_EOL);
       $cnt--;
    }
 

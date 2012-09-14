@@ -1,8 +1,9 @@
 {
    "require": {
-      "slim/slim": "1.6.*"
+      "slim/slim": "1.6.*",
+      "nesbot/carbon": "*"
    },
    "autoload": {
-        "psr-0": {"Post": "lib/", "Dated": "lib/", "MasterView": "lib/", "BlogView": "lib/"}
+        "psr-0": {"Post": "lib/", "MasterView": "lib/", "BlogView": "lib/"}
     }
 }
