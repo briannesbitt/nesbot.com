@@ -1,7 +1,7 @@
 <?php
 require 'vendor\autoload.php';
 
-$posts = [];
+$posts = array();
 $postDir = __DIR__.'/views/posts/';
 foreach (scandir($postDir) as $filename) {
    $post = parsePost($postDir, $filename);

@@ -1,7 +1,7 @@
 <?php
 $loader = require 'vendor/autoload.php';
 
-$mode = '';
+$mode = 'live';
 
 if (file_exists(__DIR__.'/env.live')) {
    $mode = 'live';
@@ -13,7 +13,7 @@ if (file_exists(__DIR__.'/env.live')) {
 
 require 'posts.php';
 
-$app = new \Slim\Slim(['templates.path' => __DIR__.'/views/', 'mode' => $mode]);
+$app = new \Slim\Slim(array('templates.path' => __DIR__.'/views/', 'mode' => $mode));
 $app->view(new BlogView($app, 'template.php', $posts));
 $env = $app->environment();
 

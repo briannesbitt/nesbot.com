@@ -19,16 +19,15 @@ class BlogView extends MasterView
       return $post->posted->format('M j, Y');
    }
 
-   public function withPost($slug, callable $callable)
+   public function withPost($slug, $callable)
    {
       $callable($this->posts->findBySlug($slug));
    }
 
-   public function linkPost($slug, callable $callable)
+   public function linkPost($slug, $callable)
    {
-      $this->withPost($slug, function ($post) use ($callable) {
-         $callable($this->urlFullFor($post), $post->title);
-      });
+      $post = $this->posts->findBySlug($slug);
+      $callable($this->urlFullFor($post), $post->title);
    }
 
    public function followUpTo($slug)

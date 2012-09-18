@@ -1,7 +1,7 @@
 <?php
 
 $app->get('/', function () use ($app, $posts) {
-   $app->render('index.php', ['posts' => $posts->findAll()]);
+   $app->render('index.php', array('posts' => $posts->findAll()));
 });
 
 $app->get('/:year/:month/:day/:slug', function ($year, $month, $day, $slug) use ($app, $posts) {
@@ -16,7 +16,7 @@ $app->get('/:year/:month/:day/:slug', function ($year, $month, $day, $slug) use 
 
 $app->get('/rss', function() use ($app, $posts) {
    $app->contentType('application/rss+xml');
-   $app->view()->partial('rss.php', ['posts' => $posts->findAll()]);
+   $app->view()->partial('rss.php', array('posts' => $posts->findAll()));
 });
 
 $app->notFound(function () use ($app) {
