@@ -119,6 +119,7 @@ class Posts implements IPosts
 }
 
 $posts = new Posts($posts_order, $posts);
+
 __POST__;
 
    file_put_contents($file, $s);
