@@ -1,16 +1,12 @@
-<?
+<?php
 $loader = require 'vendor/autoload.php';
 
 $mode = '';
 
-if(file_exists(__DIR__.'/env.live'))
-{
+if (file_exists(__DIR__.'/env.live')) {
    $mode = 'live';
-}
-else
-{
-   if(file_exists(__DIR__.'/env.local'))
-   {
+} else {
+   if (file_exists(__DIR__.'/env.local')) {
       $mode = 'local';
    }
 }
@@ -23,7 +19,7 @@ $env = $app->environment();
 
 require 'routes.php';
 
-$app->configureMode('live', function() use ($app, $env) {
+$app->configureMode('live', function () use ($app, $env) {
    $env['URLBASE'] = 'http://nesbot.com';
    $env['URLIMG'] = '/img/';
    $env['URLFULLIMG'] = $env['URLBASE'] . $env['URLIMG'];
@@ -33,7 +29,7 @@ $app->configureMode('live', function() use ($app, $env) {
    $app->config('debug', false);
 });
 
-$app->configureMode('local', function() use ($app, $env) {
+$app->configureMode('local', function () use ($app, $env) {
    $env['URLBASE'] = 'http://127.0.0.1';
    $env['URLIMG'] = '/img/';
    $env['URLFULLIMG'] = $env['URLBASE'] . $env['URLIMG'];

@@ -1,33 +1,39 @@
-<?
-class MasterView extends \Slim\View {
+<?php
+class MasterView extends \Slim\View
+{
    protected $app;
    protected $env;
    protected $masterTemplate;
 
-   public function __construct($app, $masterTemplate = 'template.php') {
+   public function __construct($app, $masterTemplate = 'template.php')
+   {
       parent::__construct();
       $this->app = $app;
       $this->masterTemplate = $masterTemplate;
       $this->env = $app->environment();
    }
 
-   public function setMasterTemplate($masterTemplate) {
+   public function setMasterTemplate($masterTemplate)
+   {
       $this->masterTemplate = $masterTemplate;
    }
 
-   public function render($template) {
+   public function render($template)
+   {
       $this->setData('childView', $template);
       $this->injectDefaultVariables();
       return parent::render($this->masterTemplate);
    }
 
-   public function partial($template, $data = []) {
+   public function partial($template, $data = array())
+   {
       $this->injectDefaultVariables($data);
       extract($data);
       require $this->getTemplatesDirectory().'/'.$template;
    }
 
-   private function injectDefaultVariables(&$data = null) {
+   private function injectDefaultVariables(&$data = null)
+   {
       if (is_array($data)) {
          $data['urlBase'] = $this->urlBase();
          $data['urlImg'] = $this->urlImg();
@@ -35,8 +41,7 @@ class MasterView extends \Slim\View {
          $data['urlCss'] = $this->urlCss();
          $data['urlJs'] = $this->urlJs();
          $data['isLive'] = $this->isLive();
-      }
-      else {
+      } else {
          $this->setData('urlBase', $this->urlBase());
          $this->setData('urlImg', $this->urlImg());
          $this->setData('urlFullImg', $this->urlFullImg());
@@ -46,19 +51,24 @@ class MasterView extends \Slim\View {
       }
    }
 
-   public function urlBase() {
+   public function urlBase()
+   {
       return $this->env['URLBASE'];
    }
-   public function urlImg() {
+   public function urlImg()
+   {
       return $this->env['URLIMG'];
    }
-   public function urlFullImg() {
+   public function urlFullImg()
+   {
       return $this->env['URLFULLIMG'];
    }
-   public function urlCss() {
+   public function urlCss()
+   {
       return $this->env['URLCSS'];
    }
-   public function urlJs() {
+   public function urlJs()
+   {
       return $this->env['URLJS'];
    }
 

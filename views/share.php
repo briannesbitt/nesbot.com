@@ -1,4 +1,4 @@
-<?
+<?php
 $t = urlencode($t);
 $u = urlencode($u);
 ?>

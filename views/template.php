@@ -8,7 +8,7 @@
    <link rel="stylesheet/less" type="text/css" href="<?=$urlCss?>main.less">
    <script type="text/javascript" src="<?=$urlJs?>less.min.js"></script>
 
-   <?$this->partial('gatracker.php', ['tracker' => $this->gaTracker()])?>
+   <?$this->partial('gatracker.php', array('tracker' => $this->gaTracker()))?>
 </head>
 <body>
 

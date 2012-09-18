@@ -2,9 +2,9 @@
     <div class="title"><?=$post->title?></div>
     <div class="date"><?=$this->formatPosted($post)?></div>
 
-    <?$this->partial('share.php', ['t' => $post->title, 'u' => $this->urlFullFor($post), 'uid' => 'Top'])?>
+    <?$this->partial('share.php', array('t' => $post->title, 'u' => $this->urlFullFor($post), 'uid' => 'Top'))?>
     <?$this->renderPost($post)?>
-    <?$this->partial('share.php', ['t' => $post->title, 'u' => $this->urlFullFor($post), 'uid' => 'Bottom'])?>
+    <?$this->partial('share.php', array('t' => $post->title, 'u' => $this->urlFullFor($post), 'uid' => 'Bottom'))?>
 
     <div id="post-nav">
         <span><?if($prev!=null) printf('<a href="%s"><- %s</a>', $this->urlFor($prev), $prev->title)?>&nbsp;</span>

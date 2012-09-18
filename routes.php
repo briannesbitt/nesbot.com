@@ -12,7 +12,7 @@ $app->get('/:year/:month/:day/:slug', function ($year, $month, $day, $slug) use 
       $app->pass();
    }
 
-   $app->render('post.php', ['post' => $post, 'next' => $posts->next($post), 'prev' => $posts->prev($post)]);
+   $app->render('post.php', array('post' => $post, 'next' => $posts->next($post), 'prev' => $posts->prev($post)));
 })->name('post');
 
 $app->get('/rss', function() use ($app, $posts) {

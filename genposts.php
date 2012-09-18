@@ -1,14 +1,12 @@
-<?
+<?php
 require 'vendor\autoload.php';
 
 $posts = [];
 $postDir = __DIR__.'/views/posts/';
-foreach (scandir($postDir) as $filename)
-{
+foreach (scandir($postDir) as $filename) {
    $post = parsePost($postDir, $filename);
 
-   if ($post != null)
-   {
+   if ($post != null) {
       $posts[$post->posted->timestamp] = $post;
    }
 }
@@ -20,13 +18,11 @@ function parsePost($dir, $filename)
 {
    $posts = [];
 
-   if (preg_match('/^([0-9]{4})-([0-9]{1,2})-([0-9]{1,2})-(.+)\.php$/', $filename, $matches) === 1)
-   {
+   if (preg_match('/^([0-9]{4})-([0-9]{1,2})-([0-9]{1,2})-(.+)\.php$/', $filename, $matches) === 1) {
       $posted = \Carbon\Carbon::createFromDate($matches[1], $matches[2], $matches[3]);
       $slug = $matches[4];
       $title = getPostTitle($dir.$filename);
-      if (strlen($title) > 0)
-      {
+      if (strlen($title) > 0) {
          return new Post($title, $slug, $posted);
       }
    }
@@ -37,10 +33,10 @@ function parsePost($dir, $filename)
 function getPostTitle($file)
 {
    $lines = file($file);
-   if (preg_match('@^\<\?\/\*(.+)\*\/\?\>$@', trim($lines[0]), $matches) === 1)
-   {
+   if (preg_match('@^\<\?\/\*(.+)\*\/\?\>$@', trim($lines[0]), $matches) === 1) {
       return $matches[1];
    }
+
    return null;
 }
 
@@ -51,8 +47,7 @@ function writePosts($posts, $file)
    $s .= sprintf('$posts_order = []; $posts = [];%s', PHP_EOL, PHP_EOL);
 
    $cnt = count($posts) - 1;
-   foreach ($posts as $post)
-   {
+   foreach ($posts as $post) {
       $s .= sprintf('$posts_order["%s"] = %s;%s', $post->slug, $cnt, PHP_EOL);
       $s .= sprintf('$posts[%s] = new Post("%s", "%s", \Carbon\Carbon::createFromTimestamp(%d));%s', $cnt, str_replace('"', '\"', $post->title), $post->slug, $post->posted->timestamp, PHP_EOL);
       $cnt--;
@@ -76,16 +71,19 @@ class Posts implements IPosts {
    // [slug] => #
    private $posts_order;
 
-   public function __construct(array $posts_order, array $posts) {
+   public function __construct(array $posts_order, array $posts)
+   {
       $this->posts_order = $posts_order;
       $this->posts = $posts;
    }
 
-   public function findAll() {
+   public function findAll()
+   {
       return $this->posts;
    }
 
-   public function findBySlug($slug) {
+   public function findBySlug($slug)
+   {
       if (!array_key_exists($slug, $this->posts_order)) {
          return null;
       }
@@ -95,7 +93,8 @@ class Posts implements IPosts {
       return array_key_exists($i, $this->posts) ? $this->posts[$i] : null;
    }
 
-   public function next(Post $post) {
+   public function next(Post $post)
+   {
       if (!array_key_exists($post->slug, $this->posts_order)) {
          return null;
       }
@@ -105,7 +104,8 @@ class Posts implements IPosts {
       return (++$i < count($this->posts)) ? $this->posts[$i] : null;
    }
 
-   public function prev(Post $post) {
+   public function prev(Post $post)
+   {
       if (!array_key_exists($post->slug, $this->posts_order)) {
          return null;
       }
