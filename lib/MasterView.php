@@ -22,6 +22,7 @@ class MasterView extends \Slim\View
    {
       $this->setData('childView', $template);
       $this->injectDefaultVariables();
+
       return parent::render($this->masterTemplate);
    }
 
@@ -72,7 +73,8 @@ class MasterView extends \Slim\View
       return $this->env['URLJS'];
    }
 
-   public function isLive() {
+   public function isLive()
+   {
       return $this->app->getMode() == 'live' || $this->app->getMode() == 'production';
    }
 }

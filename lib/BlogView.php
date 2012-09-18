@@ -47,7 +47,8 @@ class BlogView extends MasterView
       return $this->urlBase() . $this->urlFor($post);
    }
 
-   public function gaTracker() {
+   public function gaTracker()
+   {
       return $this->env['GATRACKER'];
    }
 }

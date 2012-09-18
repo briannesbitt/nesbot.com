@@ -7,8 +7,7 @@ $app->get('/', function () use ($app, $posts) {
 $app->get('/:year/:month/:day/:slug', function ($year, $month, $day, $slug) use ($app, $posts) {
    $post = $posts->findBySlug($slug);
 
-   if ($post == null)
-   {
+   if ($post == null) {
       $app->pass();
    }
 

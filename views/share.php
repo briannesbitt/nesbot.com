@@ -11,8 +11,7 @@ $u = urlencode($u);
 </p>
 
 <script type="text/javascript">
-$(document).ready(function()
-{
+$(document).ready(function() {
    $("#share-twitter-<?=$uid?>").click( function() {gaTrackEvent("SocialLinks", "Twitter<?=$uid?>"); } );
    $("#share-fb-<?=$uid?>").click( function() {gaTrackEvent("SocialLinks", "Facebook<?=$uid?>"); } );
    $("#share-hn-<?=$uid?>").click( function() {gaTrackEvent("SocialLinks", "HackerNews<?=$uid?>"); } );

@@ -21,8 +21,7 @@
 <script type="text/javascript">
 function gaTrackEvent(category, action)
 {
-   if (gaEnabled)
-   {
+   if (gaEnabled) {
       _gat._getTrackerByName()._trackEvent(category, action);
    }
 }
