@@ -7,6 +7,7 @@
    <link rel="shortcut icon" type="image/png" href="<?=$urlImg?>favicon.png">
    <link rel="stylesheet/less" type="text/css" href="<?=$urlCss?>main.less">
    <script type="text/javascript" src="<?=$urlJs?>less.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
 
    <?$this->partial('gatracker.php', array('tracker' => $this->gaTracker()))?>
 </head>
@@ -65,7 +66,6 @@
    <div id="content"><?$this->partial($childView, $this->getData())?></div>
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
 <script src="<?=$urlJs?>shCore.js" type="text/javascript"></script>
 <script src="<?=$urlJs?>shBrushBash.js" type="text/javascript"></script>
 <script src="<?=$urlJs?>shBrushJava.js" type="text/javascript"></script>
