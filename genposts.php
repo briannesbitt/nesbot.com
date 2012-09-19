@@ -16,7 +16,7 @@ writePosts($posts, __DIR__.'/posts.php');
 
 function parsePost($dir, $filename)
 {
-   $posts = [];
+   $posts = array();
 
    if (preg_match('/^([0-9]{4})-([0-9]{1,2})-([0-9]{1,2})-(.+)\.php$/', $filename, $matches) === 1) {
       $posted = \Carbon\Carbon::create($matches[1], $matches[2], $matches[3], 12);
