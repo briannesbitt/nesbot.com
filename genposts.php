@@ -1,5 +1,5 @@
 <?php
-require 'vendor\autoload.php';
+require 'vendor/autoload.php';
 
 $posts = array();
 $postDir = __DIR__.'/views/posts/';
