@@ -4,6 +4,40 @@ I am making the source code of my personal site available publicly in case it he
 
 I am working on a blog post about the rewrite and it should get posted in the next few days.
 
+## Installation
+
+The dependencies are resolved using [composer](http://getcomposer.org/).
+
+If you have PHP 5.4+ installed you can be up and running in 10 seconds +/- 5 seconds for slower typers or copy & pasters.
+
+```
+git clone git://github.com/briannesbitt/nesbot.com.git
+cd nesbot.com
+curl -s http://getcomposer.org/installer | php
+php composer.phar update
+touch env.local
+cd public
+php -S 127.0.0.1:80
+```
+
+Thats it. Open a browser to http://127.0.0.1/ and you should see the site as you see at [nesbot.com](http://nesbot.com)
+
+If you are running a version of PHP 5.3, the setup for nginx and apache are shown below.  Either way you will still need to perform the first 5 commands from above.
+
+### Nginx
+
+http://docs.slimframework.com/pages/routing-url-rewriting/#nginx
+
+The `root` should be pointing to the `/your/install/path/nesbot.com/public` directory of the project.
+
+### Apache
+
+http://docs.slimframework.com/pages/routing-url-rewriting/#apache_and_mod_rewrite
+
+As shown you will need to create a `.htaccess` file in the 'public/' folder.  I try not to use apache if possible so there isn't one in the repo.
+
+The `DocumentRoot` should be pointing to the `/your/install/path/nesbot.com/public` directory of the project.
+
 ## Author
 
 Me
