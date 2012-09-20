@@ -49,7 +49,7 @@ function writePosts($posts, $file)
    $cnt = count($posts) - 1;
    foreach ($posts as $post) {
       $s .= sprintf('$posts_order["%s"] = %s;%s', $post->slug, $cnt, PHP_EOL);
-      $s .= sprintf('$posts[%s] = new Post("%s", "%s", \Carbon\Carbon::createFromTimestamp(%d));%s', $cnt, str_replace('"', '\"', $post->title), $post->slug, $post->posted->timestamp, PHP_EOL);
+      $s .= sprintf('$posts[%s] = new Post(\'%s\', "%s", \Carbon\Carbon::createFromTimestamp(%d));%s', $cnt, str_replace("'", "\\'", $post->title), $post->slug, $post->posted->timestamp, PHP_EOL);
       $cnt--;
    }
 
