@@ -1,6 +1,6 @@
 # nesbot.com
 
-I am making the source code of my personal site available publicly in case it helps anybody. It's developed using the [Slim Framework](http://slimframework.com).
+I am making the source code of my [personal site](http://nesbot.com) available publicly in case it helps anybody. It's developed using the [Slim Framework](http://slimframework.com).
 
 I am working on a blog post about the rewrite and it should get posted in the next few days.
 
@@ -38,9 +38,25 @@ As shown you will need to create a `.htaccess` file in the 'public/' folder.  I 
 
 The `DocumentRoot` should be pointing to the `/your/install/path/nesbot.com/public` directory of the project.
 
+## How do I?
+
+### Add a post
+
+* Create a new file in `views/posts/` with a format of `yyyy-m-d-slug.php`.
+* The first line in the file needs to be `<?/*Post title!*/?>`.
+* Run `php genposts.php` from the project root.
+
+This will parse the files in the `views/posts/` directory and extract the date, slug and title for each post and generate a new `posts.php`.  You can view the generated `posts.php` to see what its all about.
+
+See the posts already in there for examples of functions you can use while writing posts.
+
+### What about... ?
+
+This isn't your grandma's blog... read the code and figure it out.
+
 ## Author
 
-Me
+Brian Nesbitt - <brian@nesbot.com> - <http://twitter.com/NesbittBrian>
 
 ## License
 
