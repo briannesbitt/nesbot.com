@@ -10,21 +10,21 @@
 
 <p>Now lets go ahead and create a new project.</p>
 
-<pre class="brush: bash">
+<pre><code class="bash">
 c:
 cd \
 mkdir newproject
 cd newproject
 c:\play-2.0\play.bat new
-</pre>
+</code></pre>
 
 <p>The framework will now ask for an application name.  You can specify something else or just hit ENTER to accept the default <code>newproject</code>.  Once accepted a full Play! 2.0 project will be created in the current directory.</p>
 
 <p>Now lets go ahead and run the new project via the new Play! console.</p>
 
-<pre class="brush: bash">
+<pre><code class="bash">
 c:\play-2.0\play.bat    #shows some [info] logs and then runs the console
-</pre>
+</code></pre>
 
 <p>Once the console is running and waiting for your command, type <code>run</code>.  Now open a browser to <code>http://127.0.0.1:9000</code> and say Hello!</p>
 

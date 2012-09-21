@@ -6,7 +6,7 @@
 
 <p>We will start by looking at how the current active language is parsed and extracted from the requested URI using a <code>slim.before</code> hook.  Extracting the language from the URI is important as it will allow us to use the same set of routes for all of the languages.  We will create a simple custom view template that will use a translator service to perform the lookups we will need to display the multilingual content.  The translations will be stored in language resource files.  We will also subclass the Slim application class to ensure <code>urlFor()</code> is still available and working for us.  By the end of this post we will have a full multilingual application that will be able to responsd to the following URI's:</p>
 
-<pre class="brush:plain">
+<pre><code class="bash">
 http://127.0.0.1/
 http://127.0.0.1/en
 http://127.0.0.1/de
@@ -19,19 +19,19 @@ http://127.0.0.1/login
 http://127.0.0.1/en/login
 http://127.0.0.1/de/login
 http://127.0.0.1/ru/login
-</pre>
+</code></pre>
 
 <h2>Spoiler Alert</h2>
 
 <p>If you want to skip my ramblings below you can run the following commands to have the application up and running in about 10 seconds, depending on typing speed.  This assumes you are using PHP 5.4+ with the embedded webserver.  If not it will take you longer.</p>
 
-<pre class="brush:bash">
+<pre><code class="bash">
 git clone git://github.com/briannesbitt/Slim-Multilingual.git
 cd Slim-Multilingual
 curl -s http://getcomposer.org/installer | php
 php composer.phar install
 php -S 127.0.0.1:80
-</pre>
+</code></pre>
 
 <p>The project uses composer to install the latest <code>1.6.*</code> version of Slim and also to generate an autoload for all of the classes in the <code>app/lib/</code> directory via the composer classmap feature.</p>
 
@@ -41,15 +41,15 @@ php -S 127.0.0.1:80
 
 <p>Lets start this by first showing the common route for the homepage.  We want the following route to match against URI's #1, #2, #3 and #4 from above.</p>
 
-<pre class="brush:php">
+<pre><code class="php">
 $app->get('/', function () use ($app) {
    $app->render('home.php');
 });
-</pre>
+</code></pre>
 
 <p>The only way to do that (without using optional route parameters due to their limitations) is to parse and extract the language from the URI.  This must happen before Slim performs its routing logic so the proper matches take place.  For this we will use a <code>slim.before</code> <a href="http://www.slimframework.com/documentation/stable#hooks-default">hook</a>.  Slim will perform its route matching based on the URI in <code>$env['PATH_INFO']</code> where <code>$env = $app->environment()</code>.  So as part of the <code>slim.before</code> hook we simply loop through the <code>$availableLangs</code> and see if the URI begins with <code>/lang/</code>.  If so we can <code>substr()</code> the <code>$env['PATH_INFO']</code> to extract the language and write the shorter URI back to the <code>$env['PATH_INFO']</code> variable.  If we are quiet enough then Slim won't know the difference and it will go ahead and match routes against the modified URI.</p>
 
-<pre class="brush:php">
+<pre><code class="php">
 $pathInfo = $env['PATH_INFO'] . (substr($env['PATH_INFO'], -1) !== '/' ? '/' : '');
 
 // extract lang from PATH_INFO
@@ -64,21 +64,21 @@ foreach($availableLangs as $availableLang) {
       }
    }
 }
-</pre>
+</code></pre>
 
 <p>The first line of code from above is necesssary to match against a URI like <code>/en</code>.  Our attempted match string will be <code>/en/</code> so we need to append the trailing <code>/</code>.  If we only match against <code>/en</code> then we could improperly intercept other routes like <code>/entertain</code> which would be a request for the entertain page without a language specified.  The full <code>slim.before</code> hook can be seen at <a href="https://github.com/briannesbitt/Slim-Multilingual/blob/master/app/hooks.php">https://github.com/briannesbitt/Slim-Multilingual/blob/master/app/hooks.php</a></p>
 
 <p>Once we have the <code>$lang</code> determined we can set it in our view at the end of the hook as the following code shows.  We also initialize some variables that will always be available to the view. The custom view will be examined in a bit.</p>
 
-<pre class="brush:php">
+<pre><code class="php">
 $app->view()->setLang($lang);
 $app->view()->setAvailableLangs($availableLangs);
 $app->view()->setPathInfo($env['PATH_INFO']);
-</pre>
+</code></pre>
 
 <p>With the URI modifications completed Slim will go ahead and perform its matching as usual, not knowing anything about the language that was once there.  This allows us to create our 3 page application with the following 4 routes.</p>
 
-<pre class="brush:php">
+<pre><code class="php">
 &lt;?
 $app->get('/', function () use ($app) {
     $app->render('home.php');
@@ -95,7 +95,7 @@ $app->get('/login', function () use ($app) {
 $app->post('/login', function () use ($app) {
     $app->render('login.php', array('error' => $app->view()->tr('login-error-dne', array('email' => $app->request()->post('email')))));
 })->name('loginPost');
-</pre>
+</code></pre>
 
 <p>You can see the login page requires 2 routes, one for displaying the form and a second to receive the form POSTing.</p>
 
@@ -103,12 +103,12 @@ $app->post('/login', function () use ($app) {
 
 <p>The templating provided with Slim is pretty basic (there is a <a href="https://github.com/codeguy/Slim-Extras">Slim-Extras</a> repo that integrates other templating engines into Slim).  To prevent the duplication of html the typical Slim template will look like this:
 
-<pre class="brush:php">
+<pre><code class="php">
 &lt;?
 include 'header.php';
-<p>This is my content.</p>
+&lt;p>This is my content.&lt;/p>
 include 'footer.php';
-</pre>
+</code></pre>
 
 <p>I would suggest using a Slim-Extras template but to keep this application simple and from having any external dependencies we will turn the tables.  With no change to your routes and very little code you can add master template functionality to your custom template and thus preventing the duplication of including the header and footer on each page.</p>
 
@@ -116,7 +116,7 @@ include 'footer.php';
 
 <p>Now to complete the view code we just need to override the <code>render()</code> function.  If the <code>masterTemplate</code> was set then <code>render()</code> swaps the template with the master template and sets up a <code>$childView</code> variable so the master template can <code>require</code> it.  Here is the full <code>MasterView</code> class in all of its 15 lines of glory.</p>
 
-<pre class="brush:php">
+<pre><code class="php">
 &lt;?
 class MasterView extends Slim_View {
     private $masterTemplate;
@@ -132,7 +132,7 @@ class MasterView extends Slim_View {
         return parent::render($template);
     }
 }
-</pre>
+</code></pre>
 
 <h2>The Translator and the MultilingualView</h2>
 
@@ -144,20 +144,20 @@ class MasterView extends Slim_View {
 
 <p>Sometimes its easier to view all of the content in the context of the page and html rather than in the language resource file. Here you have a few choices.  Say you have an about page that is broken into 4 &lt;p&gt; tags.  You can split the p tags over a few language resource keys, use a HEREDOC and put the html in a single resource key or include a language specific sub template.  Here are the implementation options for the <code>about.php</code> view file:</p>
 
-<pre class="brush:php">
+<pre><code class="php">
 <p>&lt;?php echo $this->tr('about-p1')?></p>
 <p>&lt;?php echo $this->tr('about-p2')?></p>
 <p>&lt;?php echo $this->tr('about-p3')?></p>
 <p>&lt;?php echo $this->tr('about-p4')?></p>
-</pre>
+</code></pre>
 
-<pre class="brush:php">
+<pre><code class="php">
 &lt;?php echo $this->tr('about-content')?>
-</pre>
+</code></pre>
 
-<pre class="brush:php">
+<pre><code class="php">
 &lt;?php require 'about_'.$lang.'.php'?>
-</pre>
+</code></pre>
 
 <p>I think for this example I would choose the 3rd option.  Anything more complicated would require mixins, more child templates etc. etc. and I would really start to lean to looking at the many templating engines out there.  What I do like about this one is that its really simple, easy to understand and flexible since it is just PHP.</p>
 
@@ -165,14 +165,14 @@ class MasterView extends Slim_View {
 
 <p>This is actually much easier that it seems.  You can subclass the Slim application and override the <code>urlFor()</code> function.  It just needs to prepend <code>/lang</code> (lang being the current language) to the url returned by the parent <code>urlFor()</code>.  The full 6 line class is shown here:</p>
 
-<pre class="brush:php">
+<pre><code class="php">
 &lt;?
 class MultilingualSlim extends Slim {
     public function urlFor( $name, $params = array() ) {
         return sprintf('/%s%s', $this->view()->getLang(), parent::urlFor($name, $params));
     }
 }
-</pre>
+</code></pre>
 
 <p>Follow this up by changing your application creation from <code>$app = new Slim(array('templates.path' => './app/views/'));</code> to <code>$app = new MultilingualSlim(array('templates.path' => './app/views/'));</code> and your done.</p>
 

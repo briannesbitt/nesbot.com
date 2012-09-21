@@ -25,13 +25,13 @@ I won't cover every little detail but will focus on the parts that played the la
 
 <p>The route is obviously meant to match a <code>/2011/11/22/slug</code> format. <i>Don't tell anyone</i> but I ignore the date portions and just do a lookup by slug.  I hate when you visit a blog and there is no date so you can't tell how old the content you are reading is !!  But I digress. :-)</p>
 
-<pre class="brush: plain">
+<pre><code class="bash">
 GET /{<[0-9]{4}>year}/{<[0-9]{1,2}>month}/{<[0-9]{1,2}>day}/{slug}/?   Application.show
-</pre>
+</code></pre>
 
 <p>The controller is simple.  It gets the Post by slug, does a couple of error checks and finally renders the template also passing in the older and newer posts (which must be local variables for that magic to work) which are used for the navigation at the bottom of the post.</p>
 
-<pre class="brush: java">
+<pre><code class="java">
 public static void show(Long year, Long month, Long day, String slug)
 {
    Post post = Post.findBySlug(slug);
@@ -51,22 +51,22 @@ public static void show(Long year, Long month, Long day, String slug)
 
    render(post, older, newer);
 }
-</pre>
+</code></pre>
 
 <p>The final snippet is from the show.html template. It extends the master template and simply shows the post.  The inclusion of the actual post tag template is easy since Groovy allows the dynamic include of another template by a variables value.</p>
 
-<pre class="brush: plain">
+<pre><code class="bash">
 &lt;h1>${post.title}&lt;/h1>
 &lt;div class="date">${post.prettyUpdated()}&lt;/div>
 
 #{share uTag:'Top',urlimages:urlimages,title:post.title,url:post.fullUrl() /}
 #{include post.tagName() /}
 #{share uTag:'Bottom',urlimages:urlimages,title:post.title,url:post.fullUrl() /}
-</pre>
+</code></pre>
 
 <p>Its all quite simple.  No "real" data source and no html form processing so the move to 2.0 shouldn't be too bad, I think!  The only other part I'll mention at this point is that there is an RSS feed generated as well.</p>
 
-<h1>Things I encountered during the conversion to Play 2.0 BETA</h1>
+<p><h1>Things I encountered during the conversion to Play 2.0 BETA</h1></p>
 
 <h2>Scala templates</h2>
 
@@ -76,17 +76,17 @@ public static void show(Long year, Long month, Long day, String slug)
 
 <p>Being a BETA release all of the sugar that was there in 1.X is just not available yet (FastTags, Extensions, absolute reverse routing), but nothing you can't just implement yourself.  You can basically write a Java/Scala class and just statically import it into the template and start calling the methods on it. For example to perform a url encode on a string you can write a <code>public static String urlencode(String s)</code> method in a <code>app/helpers/Html.java</code> file.  To use this function, your template might look like:</p>
 
-<pre class="brush: scala">
+<pre><code class="scala">
 @(searchTxt: String)
 
 @import helpers.Html._
 
 &lt;a href="http://www.google.com?q=@urlencode(searchTxt)"&gt;Search for @searchTxt via google.&lt;/a&gt;
-</pre>
+</code></pre>
 
 <p>Since the templates get compiled down to Scala code, you can overload functions and everything works as expected.  For example to output the "pretty" post date I have these helper functions:</p>
 
-<pre class="brush: java">
+<pre><code class="java">
 public static String prettyTimestamp(long ts)
 {
    return Dater.create(ts).toString("MMM d, yyyy");
@@ -95,11 +95,11 @@ public static String prettyTimestamp(Post post)
 {
    return prettyTimestamp(post.updated);
 }
-</pre>
+</code></pre>
 
 <p>The accompanying template would call <code>@prettyTimestamp(post)</code> to display the post date but you can also use the same function if you have a timestamp <code>@prettyTimestamp(post.updated)</code>.  The Dater class is part of nesbot-commons (I have never liked star wars and therefore don't care for joda-time ;).  There is a way to do this in scala where you can actually have the template syntax be <code>@searchTxt.encode</code>.  I haven't bothered to branch over to Scala yet, but I am sure these helpers will be in the framework by the time RC1 is released anyway.  I'll give you one more example for url reverse routing for posts.  Reverse routing for posts is done like <code>@routes.Application.show(year, month, date, slug)</code>.  This is used to link to similar posts and for the next/previous post navigation. Absolute reverse routing is not implemented yet so I had to implement my own (I need the absolute for the RSS feed). Not to mention if you have a post object in the template calling the above routing code in many places doesn't feel very DRY.  I created 2 functions to help out.</p>
 
-<pre class="brush: java">
+<pre><code class="java">
 public static String url(Post post)
 {
    Dater d = Dater.create(post.updated);
@@ -109,7 +109,7 @@ public static String urlFull(Post post)
 {
    return Config.urlbaseabsoluteNoSlash() + url(post);
 }
-</pre>
+</code></pre>
 
 <p>This makes post linking simple. After statically importing the Html helper class the home page, for example, can simply do <code>@url(post)</code>.  Wherever an absolute url is required you use the 2nd function, <code>@urlFull(post)</code>.  The Config class I'll talk about in a bit.  It was also mentioned in the google group that a config value might be added to allow us to specify some default classes to import for templates.  This would eliminate the need for the <code>@import helpers.Html.*</code> at the top of each template that makes use of the helpers.</p>
 
@@ -127,7 +127,7 @@ When I was getting the <code>/rss</code> feed working I kept getting the open/sa
 
 <p>At first I used my trusty hammer (you know...the tool that can fix everything!) and hacked up the controller.</p>
 
-<pre class="brush: java">
+<pre><code class="java">
 public static Result rss()
 {
    response().setContentType("application/rss+xml");
@@ -144,13 +144,13 @@ public static Result rss()
 
    return ok(body);
 }
-</pre>
+</code></pre>
 
 <p>This worked just fine, but smelled bad.  I looked into the code for the generated Scala template code file <code>target/scala-2.9.1/src_managed</code> and I learned more about the template system which was a win.  In the end I figured out that if you put your content up on the first line after the arguments it prevents the blank line, which even though is a minus for readability, its not that bad and a better solution than the hack above.</p>
 
-<pre class="brush: scala">
+<pre><code class="scala">
 @(arg : String)&lt;?xml version="1.0" encoding="UTF-8" ?>
-</pre>
+</code></pre>
 
 <h2>Application Global settings</h2>
 
@@ -170,7 +170,7 @@ public static Result rss()
 
 <p>For my purposes I have implemented a Config class. The <code>init()</code> function is called by the <code>Global.beforeStart()</code> handler.</p>
 
-<pre class="brush: java">
+<pre><code class="java">
 public class Config
 {
    private static Configuration _envConfig;
@@ -199,7 +199,7 @@ public class Config
       return getString("posts.path");
    }
 }
-</pre>
+</code></pre>
 
 <p>So now you can just call <code>Config.postsPath()</code> and you get either the global value or the environment specific value. In any template you can call <code>@helpers.Config.postsPath</code> or <code>@import helpers.Config._</code> and then <code>@postsPath</code> if the configuration value was required in your templates.</p>
 
@@ -209,7 +209,7 @@ public class Config
 
 <p>Initially I ported over the code pretty much as is, moving the previous <code>@OnApplicationStart</code> job code to the new <code>Global.beforeStart()</code> handler.  I translated the templates to the new Scala templates and tried running the application.  It failed miserably!  What happens is the <code>app/views/**/*.scala.html</code> DSL templates get compiled via the framework and are managed in the <code>target/scala-2.9.1/src_managed/main/views/html</code> directory.  So my first post <code>app/views/posts/2011-9-7-carpenters-house-last-to-get-attention.scala.html</code> is compiled to <code>target/scala-2.9.1/src_managed/main/views/html/posts/2011-9-7-carpenters-house-last-to-get-attention.template.scala</code>.  Here is a snippet of the compiled Scala template code:</p>
 
-<pre class="brush: scala">
+<pre><code class="scala">
 package views.html.posts
 
 object 2011-9-7-carpenters-house-last-to-get-attention extends BaseScalaTemplate[play.api.templates.Html,Format[play.api.templates.Html]](play.api.templates.HtmlFormat) with play.api.templates.Template0[play.api.templates.Html] {
@@ -218,12 +218,12 @@ object 2011-9-7-carpenters-house-last-to-get-attention extends BaseScalaTemplate
         _display_ {
 
           Seq(format.raw/*1.76*/(&quot;&quot;&quot;
-      <p>post content is here</p> &quot;&quot;&quot;))}
+      &lt;p>post content is here&lt;/p> &quot;&quot;&quot;))}
     }
-    
+
     def render() = apply()
 }
-</pre>
+</code></pre>
 
 <p>The issue I discovered is that the template file name gets used as the compiled Scala object name.  In case you have forgotten, java class naming dictates that a class can not start with a number and "-" is not allowed in the name.  I had to change my filename format so that it would be a valid class name to get it to compile.  I changed the file name format to <code>pYYYY_mm_dd_slug.scala.html</code>. I use "p" to indicate a post but mostly to satisfy the can't start with a number rule.  I changed the "-" as the seperator to "_" as underscores are allowed.  The slug portion also uses "_" to seperate words and I simply replace them in favour of "-" to use in the actual url's produced.  The title is still in the template file as the first line but uses the new comment syntax <code>*@post title@*</code>.  A bit of an aside, when I am working on a new post I go ahead and create the new file but with a prefix of "a_" which will do a few things for me.  Without it showing up on the live site I can go ahead and push it to github so I won't lose anything I write if its not done in one sitting (also allows me to work on it from multiple computers if necessary) and gets it sorted to the top in a directory listing so I can always see which post I am currently working on. I could branch for each new post but that just seems like overkill.  This got the posts being populated and the templates compiling successfully and so I moved on to the controller and rendering.</p>
 
@@ -231,13 +231,13 @@ object 2011-9-7-carpenters-house-last-to-get-attention extends BaseScalaTemplate
 
 <p>Only minor syntax changes here.</p>
 
-<pre class="brush: plain">
+<pre><code class="bash">
 GET /$year<[0-9]{4}>/$month<[0-9]{1,2}>/$day<[0-9]{1,2}>/:slug    controllers.Application.show(year : Long, month: Long, day: Long, slug)
-</pre>
+</code></pre>
 
 <p>The controller really didn't change much either.  Besides using the new API for template rendering the only other minor change was not having to create the local variables for <code>older</code> and <code>newer</code> posts to pass to the template as now they are real parameters to the template's render() function.</p>
 
-<pre class="brush: java">
+<pre><code class="java">
 public static Result show(Long year, Long month, Long day, String slug)
 {
    Post post = Post.findBySlug(slug);
@@ -254,24 +254,24 @@ public static Result show(Long year, Long month, Long day, String slug)
 
    return ok(show.render(post, post.next(), post.previous()));
 }
-</pre>
+</code></pre>
 
 <p>In the view I could no longer dynamically include the post template like the previous verison did easily <code>#{include post.tagName() /}</code> thanks to Groovy.  I could however just use reflection to load the class and invoke the render method.  The compiled template is a Scala object.  This represents a singleton in Scala and the methods defined can be called staticly.  Its then just an easy matter of loading the class, getting the declared method and invoking it. Even though I am invoking the template at runtime, all of the posts are still compiled and type checked at compile time.</p>
 
 <p>The template really isn't that different looking.  You see the use of the Scala template <code>@</code> begin the code statements.  You see the <code>prettyTimestamp</code> Html helper being called - it was done with an extension before but wasn't typesafe as it is now.  You can see the share tag being called as before except the arguments are now typed rather than just names.  The <code>helpers.Html.render(post)</code> as seen below is where the post template gets rendered.  It makes a couple of other calls to convert the slug back to the template filename and then passes that on to <code>renderDynamic</code> to perform the invoke.</p>
 
-<pre class="brush: scala">
+<pre><code class="scala">
 &lt;div class="title">@post.title&lt;/div>
 &lt;div class="date">@prettyTimestamp(post)&lt;/div>
 
 @share(post.title, urlFull(post), "Top")
 @helpers.Html.render(post)
 @share(post.title, urlFull(post), "Bottom")
-</pre>
+</code></pre>
 
 <p>And the snippet from Html.java for the helpers.</p>
 
-<pre class="brush: java">
+<pre><code class="java">
 public static String view(Post post)
 {
    return Strings.format("{0}p{1}_{2}", Strings.replace(Config.postsPath(), "app/views/", "views.html."), Dater.create(post.updated).toString("yyyy_M_d"), post.slug.replace('-', '_')).replace('/', '.');
@@ -306,13 +306,13 @@ public static play.api.templates.Html renderDynamic(String viewClazz)
    }
    return play.api.templates.Html.empty();
 }
-</pre>
+</code></pre>
 
 <h2>Deployment</h2>
 
 <p>When executing in DEV mode by using <code>play run</code> from the shell or <code>run</code> from the new Play console I don't think you can change the port it binds to.  If you are using <code>start</code> to execute in PROD mode, it will read the port number from a PORT environment variable if it exists. Of course I am sure that control will be enhanced by the release candidate.  Also I haven't seen a <code>play stop</code> command yet.  For now you can kill the task from the pid in the <code>RUNNING_PID</code> file, simple enough but I am sure a stop will be added.  I use this script to restart the server when I deploy a new blog post.  I have nginx running in front as a reverse proxy and it serves up a simple 50x.html page when the proxy isn't responding - most likely during the few seconds it takes to precompile on startup.</p>
 
-<pre class="brush: bash">
+<pre><code class="bash">
 #!/bin/sh
 
 cd /vol/www/nesbot.com
@@ -330,7 +330,7 @@ export PORT
 #play2 stop   #this doesn't exist yet!
 play2 clean
 play2 start
-</pre>
+</code></pre>
 
 <h2>Cannot run program "javac"</h2>
 

@@ -6,7 +6,7 @@
 
 <p>The top of the exception stack that you get looks like this:</p>
 
-<pre class="brush: plain">
+<pre><code class="bash">
 Caused by: java.lang.IllegalArgumentException: can't parse argument number
    at java.text.MessageFormat.makeFormat(MessageFormat.java:1339) ~[na:1.6.0_23]
    at java.text.MessageFormat.applyPattern(MessageFormat.java:458) ~[na:1.6.0_23]
@@ -26,34 +26,34 @@ Caused by: java.lang.IllegalArgumentException: can't parse argument number
    at com.google.code.morphia.DatastoreImpl.getCollection(DatastoreImpl.java:546) ~[na:na]
    at com.google.code.morphia.DatastoreImpl.createQuery(DatastoreImpl.java:374) ~[na:na]
    at com.google.code.morphia.DatastoreImpl.find(DatastoreImpl.java:395) ~[na:na]
-</pre>
+</code></pre>
 
 <p>Then on the next page reload you start seeing exceptions like this:</p>
 
-<pre class="brush: plain">
+<pre><code class="bash">
 NoClassDefFoundError: Could not initialize class models.Player$
-</pre>
+</code></pre>
 
 <p>Play 2.0 uses slf4j bridge <a href="https://github.com/playframework/Play20/blob/master/framework/play/src/main/scala/play/api/Logger.scala#L166">SLF4JBridgeHandler.install()</a> as it configures the root logger.  This causes morphia to throw errors when the logger is in DEBUG mode.  The last stack trace in morphia code is a call to <a href="http://code.google.com/p/morphia/source/browse/trunk/morphia/src/main/java/com/google/code/morphia/mapping/MappedClass.java#111">log.debug("MappedClass done: " + toString());</a>.  There is a <a href="http://code.google.com/p/morphia/wiki/SLF4JExtension">sl4fj morphia extension</a> that you need to include in your classpath and then ensure you call to register the logger extension at startup and the error no longer happens.  You can put it in a static {} block if you want or the <a href="https://github.com/playframework/Play20/wiki/ScalaGlobal">Global object beforeStart()</a>.</p>
 
 <p>For java the code is:</p>
 
-<pre class="brush: java">
+<pre><code class="java">
 MorphiaLoggerFactory.registerLogger(SLF4JLoggerImplFactory.class);
-</pre>
+</code></pre>
 
 <p>For Scala the code is:</p>
 
-<pre class="brush: scala">
+<pre><code class="scala">
 MorphiaLoggerFactory.registerLogger(classOf[SLF4JLogrImplFactory]);
-</pre>
+</code></pre>
 
 <p>Depending on where you register the new logger extension you might still see the exception.  The other solution (as provided by <a href="http://software-lgl.blogspot.com/">Green Luo</a> who manages the morphia Play module) is to call the <code>init()</code> which sets the internal <a href="http://code.google.com/p/morphia/source/browse/trunk/morphia/src/main/java/com/google/code/morphia/logging/MorphiaLoggerFactory.java#56">loggerFactory to null</a>.</p>
 
-<pre class="brush: java">
+<pre><code class="java">
 MorphiaLoggerFactory.init();
 MorphiaLoggerFactory.registerLogger(SLF4JLoggerImplFactory.class);
-</pre>
+</code></pre>
 
 <?$this->linkPost('now-running-on-play-2-beta', function ($url, $title) {?>
    <p>Hopefully I'll launch this side project tonight/tomorrow and I'll post about it like I did about <a href="<?=$url?>">moving my blog to Play 2.0</a>.</p>

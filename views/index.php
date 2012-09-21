@@ -1,7 +1,7 @@
 <ul>
   <?foreach($posts as $post):?>
    <div class="post">
-      <div class="title"><a href="<?=$this->urlFor($post)?>"><?=$post->title?></a></div>
+      <h1><a href="<?=$this->urlFor($post)?>"><?=$post->title?></a></h1>
       <p class="date"><?=$this->formatPosted($post)?></p>
    </div>
   <?endforeach;?>

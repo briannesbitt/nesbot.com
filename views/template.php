@@ -28,55 +28,43 @@
 
 <div id="page">
    <div id="menu">
-   <h2>about me</h2>
-   <div id="about">
-      <ul>
-         <li>2 yrs @ Contracting</li>
-         <li>10 yrs @ <a href="http://www.fuelindustries.com" target="_blank">Fuel Industries</a><br/><span class="sm">Co-Founder & CTO<br/><a href="http://list.canadianbusiness.com/rankings/profit100/2008/DisplayProfile.aspx?profile=87" target="_blank">100 employees, $8M+ in '07</a><br/></span></li>
-         <li>2 yrs @ <a href="http://www.lockheedmartin.com/ca.html" target="_blank">Lockheed Martin</a></li>
-         <li>Comp Sys B. Eng. @ <a href="http://www.carleton.ca/admissions/programs/computer-systems-engineering/" target="_blank">Carleton U</a></li>
-      </ul>
+      <h2>about me</h2>
+      <div id="about">
+         <ul>
+            <li>2 yrs @ Contracting</li>
+            <li>10 yrs @ <a href="http://www.fuelindustries.com" target="_blank">Fuel Industries</a><br/><span class="sm">Co-Founder & CTO<br/><a href="http://list.canadianbusiness.com/rankings/profit100/2008/DisplayProfile.aspx?profile=87" target="_blank">100 employees, $8M+ in '07</a><br/></span></li>
+            <li>2 yrs @ <a href="http://www.lockheedmartin.com/ca.html" target="_blank">Lockheed Martin</a></li>
+            <li>Comp Sys B. Eng. @ <a href="http://www.carleton.ca/admissions/programs/computer-systems-engineering/" target="_blank">Carleton U</a></li>
+         </ul>
+      </div>
+      <div id="links">
+         <h2>contact</h2>
+         <ul>
+            <li><a href="http://twitter.com/NesbittBrian">twitter.com/NesbittBrian</a></li>
+            <li><a href="mailto:brian@nesbot.com">brian@nesbot.com</a></li>
+         </ul>
+         <h2>what am i doing</h2>
+         <ul>
+            <li><a href="http://help.slimframework.com" target="_blank">help.slimframework.com</a></li>
+            <li><a href="http://deservefinancialfreedom.com" target="_blank">deservefinancialfreedom.com</a></li>
+            <li><a href="http://withoutafather.com" target="_blank">withoutafather.com</a></li>
+            <li><a href="http://github.com/briannesbitt" target="_blank">github</a></li>
+            <li><a href="http://mogade.com" target="_blank">mogade.com</a></li>
+            <li><a href="http://hockey.nesbot.com" target="_blank">sidney crosby art ross watch</a></li>
+            <li><a href="http://www.ottawatravellers.ca" target="_blank">hockey</a></li>
+         </ul>
+         <h2>what i play with</h2>
+         <ul>
+            <li><a href="http://slimframework.com/" target="_blank">slimframework.com</a></li>
+            <li><a href="http://mongodb.org/" target="_blank">mongodb.org</a></li>
+            <li><a href="http://www.thediv-net.com/" target="_blank">thediv-net.com</a></li>
+            <li><a href="http://www.ottawasenators.com/" target="_blank">ottawasenators.com</a></li>
+         </ul>
+      </div>
    </div>
-   <div id="links">
-      <h2>contact</h2>
-      <ul>
-         <li><a href="http://twitter.com/NesbittBrian">twitter.com/NesbittBrian</a></li>
-         <li><a href="mailto:brian@nesbot.com">brian@nesbot.com</a></li>
-      </ul>
-      <h2>what am i doing</h2>
-      <ul>
-         <li><a href="http://help.slimframework.com" target="_blank">help.slimframework.com</a></li>
-         <li><a href="http://deservefinancialfreedom.com" target="_blank">deservefinancialfreedom.com</a></li>
-         <li><a href="http://withoutafather.com" target="_blank">withoutafather.com</a></li>
-         <li><a href="http://github.com/briannesbitt" target="_blank">github</a></li>
-         <li><a href="http://mogade.com" target="_blank">mogade.com</a></li>
-         <li><a href="http://hockey.nesbot.com" target="_blank">sidney crosby art ross watch</a></li>
-         <li><a href="http://www.ottawatravellers.ca" target="_blank">hockey</a></li>
-      </ul>
-      <h2>what i play with</h2>
-      <ul>
-         <li><a href="http://slimframework.com/" target="_blank">slimframework.com</a></li>
-         <li><a href="http://mongodb.org/" target="_blank">mongodb.org</a></li>
-         <li><a href="http://www.thediv-net.com/" target="_blank">thediv-net.com</a></li>
-         <li><a href="http://www.ottawasenators.com/" target="_blank">ottawasenators.com</a></li>
-      </ul>
-   </div>
-</div>
 
    <div id="content"><?$this->partial($childView, $this->getData())?></div>
 </div>
-
-<script src="<?=$urlJs?>shCore.js" type="text/javascript"></script>
-<script src="<?=$urlJs?>shBrushBash.js" type="text/javascript"></script>
-<script src="<?=$urlJs?>shBrushJava.js" type="text/javascript"></script>
-<script src="<?=$urlJs?>shBrushPlain.js" type="text/javascript"></script>
-<script src="<?=$urlJs?>shBrushScala.js" type="text/javascript"></script>
-<script src="<?=$urlJs?>shBrushJScript.js" type="text/javascript"></script>
-<script src="<?=$urlJs?>shBrushPhp.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-   SyntaxHighlighter.all()
-</script>
 
 </body>
 </html>

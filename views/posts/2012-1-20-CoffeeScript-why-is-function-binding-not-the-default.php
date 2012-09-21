@@ -16,18 +16,18 @@
 
 <p>To see if the madness should continue in the name of performance I have created a simple little benchmark.</p>
 
-<pre class="brush: javascript">
+<pre><code class="coffeescript">
 class FunctionBinding
   constructor: ->
 
   thisIsNotBound: ->
 
   thisIsBound: =>
-</pre>
+</code></pre>
 
 <p>You can see below that the compiled JavaScript wraps the <code>thisIsBound</code> function with the <code>__bind</code> call to bind the <code>this</code> context for all calls to that function.  This is where the extra overhead comes from.</p>
 
-<pre class="brush: javascript">
+<pre><code class="coffeescript">
 (function() {
   var FunctionBinding, fb, i,
     __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
@@ -47,11 +47,11 @@ class FunctionBinding
   })();
 
 }).call(this);
-</pre>
+</code></pre>
 
 <p>Here is the benchmark code that executes the two functions and performs the necessary timing thanks to the node.js STDIO api console.time() and console.timeEnd(), that according to <a href="https://github.com/joyent/node/blob/master/lib/console.js" target="_blank">console.js</a> is just a simple wrapper on <code>Date.now()</code>.</p>
 
-<pre class="brush: javascript">
+<pre><code class="coffeescript">
 fb = new FunctionBinding()
 
 console.time('thisIsNotBound');
@@ -61,7 +61,7 @@ console.timeEnd('thisIsNotBound');
 console.time('thisIsBound');
 fb.thisIsBound() for i in [1..1000000]
 console.timeEnd('thisIsBound');
-</pre>
+</code></pre>
 
 <p>I first ran this with 10, 100, 1000, 10000 iterations but both timings were 0ms throughout.  It wasn't until I got to the 100k and 1 M mark that I saw real numbers.  These are averages of about 10 runs each.
 

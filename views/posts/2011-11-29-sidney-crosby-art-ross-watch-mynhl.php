@@ -4,7 +4,7 @@
 
 <p>If you want to have a look at the site first, go here : <a href="http://hockey.nesbot.com/" target="_blank">http://hockey.nesbot.com/</a></p>
 
-<h1>Hockey Fans : about the site</h1>
+<p><h1>Hockey Fans : about the site</h1></p>
 
 <h2>Sidney Crosby Art Ross Watch</h2>
 
@@ -24,7 +24,7 @@
 
 <p><a href="http://hockey.nesbot.com/mynhl" target="_blank">http://hockey.nesbot.com/mynhl</a></p>
 
-<h1><a name="programmer"></a>Programmers : how I made the site</h1>
+<p><h1><a name="programmer"></a>Programmers : how I made the site</h1></p>
 
 <?$this->linkPost('now-running-on-play-2-beta', function ($url, $title) {?>
    <p>If you haven't read my first post on Play 2.0 you might want to go back and read through <a href="<?=$url?>">This blog is now running on Play 2.0 BETA</a> as it has some thoughts on the BETA status and its current state.</p>
@@ -40,7 +40,7 @@
 
 <p>The Play 1.X <a href="http://www.playframework.org/documentation/1.2.3/jobs">asynchronous jobs</a> framework is exactly what I would have used to schedule the scraping.  Play 2.0 doesn't have jobs built into it yet so I used the <code>java.util.concurrent.Executors</code> to run the job on a regular schedule.  I looked around for the Scala equivalent but most sites just said to use the java api.  I created a <a href="https://github.com/playframework/Play20/wiki/ScalaGlobal">Global</a> object and used the <code>beforeStart</code> to setup the thread scheduler and the <code>onStop</code> for shutdown.  The mongoDB and morphia intialization code will be talked about in the next section.  As you can see the <code>StatsUpdater</code> runs immediately as there is 0 intial delay and then is scheduled to run every 30 minutes.  The thread pool only has 1 thread since its the only scheduled task in the pool.</p>
 
-<pre class="brush:scala">
+<pre><code class="scala">
 object Global extends GlobalSettings {
   val executor = Executors.newSingleThreadScheduledExecutor()
 
@@ -52,11 +52,11 @@ object Global extends GlobalSettings {
     executor.shutdownNow
   }
 }
-</pre>
+</code></pre>
 
 <p>The <code>Runnable StatsUpdater</code> is probably not as elegant as you can get with Scala since this is my first time and I am just getting used to all of the sugar provided.  The <code>run()</code> calls the appropriate <code>upate*()</code> methods and catches all exceptions and logs any errors via Play.</p>
 
-<pre class="brush:scala">
+<pre><code class="scala">
 object StatsUpdater extends Runnable {
   def run() {
     try {
@@ -71,7 +71,7 @@ object StatsUpdater extends Runnable {
 
   // update methods etc
 }
-</pre>
+</code></pre>
 
 <h2>Datastore is using morphia and mongoDB</h2>
 
@@ -85,7 +85,7 @@ object StatsUpdater extends Runnable {
 
 <p>This controller is pretty simple. It gather the players by projected points and determines if Crosby is in the projected to win by checking the head element.</p>
 
-<pre class="brush:scala">
+<pre><code class="scala">
 object CrosbyWatch extends Controller {
   def index = Action {
     val players = Player.findAllOrderByProjectedPoints
@@ -93,7 +93,7 @@ object CrosbyWatch extends Controller {
     Ok(views.html.crosbywatch.index(players, winner.name.equals(Player.CrosbyName), winner.name))
   }
 }
-</pre>
+</code></pre>
 
 <p>The view is also straight forward.  It uses <code>@if(crosbyToWin) {success} else {error}</code> to set the css class appropriately so if he drops out of 1st place there will be some red on the page.  Otherwise it mainly loops over the players and generates the necessary rows in the table.</p>
 
@@ -103,7 +103,7 @@ object CrosbyWatch extends Controller {
 
 <p>First the <code>index</code> action simply renders the template passing in a <code>Seq[Team]</code> to populate the drop down for selecting your favourite team.  Then it uses the <code>pointsConfig.scala.html</code> tag to render the points config section for the NHL and one that allows the user to configure their scoring system.  Nothing too complicated yet.  On <code>document.ready</code> a few things happen.  Event handlers are setup to highlight the users favourite team when the drop down changes.  Also when any scoring configuration value is changed for the user scenario it makes an ajax call to the server action <code>MyNhl.dataTable()</code> sending in all of the new point parameters.  The server action parses the querystring variables and renders the template.  This generates the standings table and calculates the points for each team as it is rendered using the parsed querystring values.  The sample provided in the Play 2.0 wiki for parsing querystring variables is shown below.  Its done like this because the querystring entries are <code>Seq[String]</code> in order to handle multiple values per variable name.</p>
 
-<pre class="brush:scala">val name = request.queryString.get("name").flatMap(_.headOption)</pre>
+<pre><code class="scala">val name = request.queryString.get("name").flatMap(_.headOption)</code></pre>
 
 <p>This is pretty verbose so I wrapped it in a ControllerHelper parse function.  I also needed to parse Ints from the String values so I added those as well while handling improper number formatting.  There is probably a more elegant way to get this done but this was easy enough for now.  I tried a few times with the new form handling as indicated <a href="https://github.com/playframework/Play20/wiki/ScalaForms">on the wiki</a> but none of the samples from there worked for me and the majority I couldn't even get to compile.</p>
 

@@ -13,18 +13,18 @@
 
 <p>The application is very simple and only has 1 page.  It allows a user to create a new Event (id,title) and uses ajax to submit that to the server.  A notification result (OK,ERROR) is displayed for the user.  All existing Events are listed, and dynamically updated, at the bottom in a simple &lt;ul&gt; list.  The application uses the bundled in-memory database H2 so there really isn't anything to setup or configure.  The json responses from the server are in the following form:</p>
 
-<pre class="brush: java">
+<pre><code class="java">
 { "status": "OK", "msg": "some message" }
 { "status": "ERROR", "msg": "some message" }
-</pre>
+</code></pre>
 
 <h2>Try it out!</h2>
 
-<pre class="brush: plain">
+<pre><code class="bash">
 git clone git://github.com/briannesbitt/PlaySampleWithJWebUnitWithAjax.git
 cd PlaySampleWithJWebUnitWithAjax
 play autotest
-</pre>
+</code></pre>
 
 <p>You can also run <code>play test</code> and then browse to <code>http://127.0.0.1:9000</code> to try it or <code>http://127.0.0.1:9000/@tests</code> to run the tests manually.</p>
 
@@ -32,7 +32,7 @@ play autotest
 
 <p>I have a <code>BaseFunctionalTest</code> class that extends the Play framework <code>FunctionalTest</code>.  This creates the <code>WebTester</code>, configures the default browser to mimic and initializes the base url using <code>setBaseUrl()</code>.  There is a <a href="http://jwebunit.sourceforge.net/quickstart.html">JWebUnit quick start guide</a> if you need to familiarize yourself first.</p>
 
-<pre class="brush: java">
+<pre><code class="java">
 public abstract class BaseFunctionalTest extends FunctionalTest
 {
    protected WebTester wt;
@@ -61,13 +61,13 @@ public abstract class BaseFunctionalTest extends FunctionalTest
       return Router.reverse(action).url;
    }
 }
-</pre>
+</code></pre>
 
 <p>There are 4 simple tests in the <code>test\ApplicationTest.java</code> file.</p>
 
 <h2>testIndexRendersSuccessfully()</h2>
 
-<pre class="brush: java">
+<pre><code class="java">
 @Test
 public void testIndexRendersSuccessfully()
 {
@@ -76,13 +76,13 @@ public void testIndexRendersSuccessfully()
    assertEquals(wt.getElementById("error").getTextContent(), "");
    assertEquals(wt.getElementById("success").getTextContent(), "");
 }
-</pre>
+</code></pre>
 
 <p>This first test is a simple test to ensure the index page gets rendered properly and just checks a few html elements on the page.</p>
 
 <h2>testCreateEventFailsWithBlankTitle()</h2>
 
-<pre class="brush: java">
+<pre><code class="java">
 @Test
 public void testCreateEventFailsWithBlankTitle() throws InterruptedException
 {
@@ -95,13 +95,13 @@ public void testCreateEventFailsWithBlankTitle() throws InterruptedException
    wt.assertTextInElement("error", "Required");
    assertEquals(wt.getElementById("success").getTextContent(), "");
 }
-</pre>
+</code></pre>
 
 <p>The second test tries to submit the form using ajax with a blank title value.  We want to check the <code>&lt;div id="error"&gt;</code> for the error message, but we have to wait for a length of time to allow the ajax call to complete.  I choose 2 seconds since that <b>seems</b> like a reasonable amout of time.</p>
 
 <h2>testCreateEventSuccessAjaxAsync()</h2>
 
-<pre class="brush: java">
+<pre><code class="java">
 @Test
 public void testCreateEventSuccessAjaxAsync() throws InterruptedException
 {
@@ -115,14 +115,14 @@ public void testCreateEventSuccessAjaxAsync() throws InterruptedException
    wt.assertTextInElement("success", "Created Event with Id:");
    assertEquals(1, Event.count());
 }
-</pre>
+</code></pre>
 
 
 <p>The third test successfully creates a new Event via ajax.  Again we need to <code>Thread.sleep(2000)</code> to wait for the ajax call to return so we can assert the <code>&lt;div id="success"&gt;</code> gets populated with the success nofication text and that the DB has an Event.</p>
 
 <h2>testCreateEventSuccessAjaxSync()</h2>
 
-<pre class="brush: java">
+<pre><code class="java">
 @Test
 public void testCreateEventSuccessAjaxSync()
 {
@@ -141,7 +141,7 @@ public void testCreateEventSuccessAjaxSync()
    List<Event> events = Event.findAll();
    wt.assertTextInElement("success", "Created Event with Id:" + events.get(0).id);
 }
-</pre>
+</code></pre>
 
 <p>The final test successfully creates a new Event via ajax, but this time we have setup an instance of <code>NicelyResynchronizingAjaxController</code> as the testing engine ajax controller.  This makes the ajax call synchronous.  This allows us to avoid the unknown length of <code>Thread.sleep()</code> time and we can continue our test ensuring that the <code>&lt;div id="success"&gt;</code> gets populated correctly and infact there is a new Event in the db.</p>
 

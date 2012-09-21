@@ -10,19 +10,19 @@
 
 <p>We can start by setting up our route and applying a catch all regular expression to the route conditions.</p>
 
-<pre class="brush: php">
+<pre><code class="php">
 $app->get('/api/getitems/:items', function ($items) use ($app) {
    echo $items;
 })->conditions(['items' => '.+']);
-</pre>
+</code></pre>
 
 <p>When this route is matched the <code>$items</code> parameter will be a string that contains the remainder of the GET request URL.  If we were to load the urls from earlier we would get the following output:</p>
 
-<pre class="brush: plain">
+<pre><code class="bash">
 seafood/fruit/meat
 seafood
 seafood/fruit/apples/bananas/chocolate
-</pre>
+</code></pre>
 
 <p>Since we used a <code>+</code> in our condition regular expression we don't have to worry about handling a blank string as that won't match our route.  So no we can use a route middleware to perform the <code>explode</code> on our string.  We use PHP's closure support to wrap an anonymous function while passing in the name of the parameter we want parsed.  In our example that name is <code>items</code> as seen above.</p>
 
@@ -30,7 +30,7 @@ seafood/fruit/apples/bananas/chocolate
 
 <p>So here is our middleware callable.</p>
 
-<pre class="brush: php">
+<pre><code class="php">
 $parseWildcardToArray = function ($param_name) use ($app) {
    return function ($req, $res, $route) use ($param_name, $app) {
 
@@ -72,34 +72,34 @@ $parseWildcardToArray = function ($param_name) use ($app) {
       $env[$param_name.'_array'] = $values;
    };
 };
-</pre>
+</code></pre>
 
 <p>Its more preventitive code than real code.  The comments above indicate the checks in place.</p>
 
 <p>From what I can tell from the Slim source there is no way to inject a new parameter back into the <code>$route->params</code>.  So for now this code injects the newly parsed array into an environment variable for the route to read.  With this in place we can now augment our route to use the middleware and access the newly created array via the environment.</p>
 
-<pre class="brush: php">
+<pre><code class="php">
 $app->get('/api/getitems/:items', $parseWildcardToArray('items'), function ($items) use ($app) {
    $env = $app->environment();
    var_dump($env['items_array']);
 })->conditions(['items' => '.+']);
-</pre>
+</code></pre>
 
 <p>This now prints the following arrays for the same three urls as before:</p>
 
-<pre class="brush: plain">
+<pre><code class="bash">
 array(3) { [0]=> string(7) "seafood" [1]=> string(5) "fruit" [2]=> string(4) "meat" }
 array(1) { [0]=> string(7) "seafood" }
 array(5) { [0]=> string(7) "seafood" [1]=> string(5) "fruit" [2]=> string(6) "apples" [3]=> string(7) "bananas" [4]=> string(9) "chocolate" }
-</pre>
+</code></pre>
 
 <p>Also, if you are using PHP 5.4+ and what to make use of array dereferencing you can change the above route to be one line like so:</p>
 
-<pre class="brush: php">
+<pre><code class="php">
 $app->get('/api/getitems/:items', $parseWildcardToArray('items'), function ($items) use ($app) {
    var_dump($app->environment()['items_array']);
 })->conditions(['items' => '.+']);
-</pre>
+</code></pre>
 
 <p>As mentioned this could be better if the route middleware was able to inject the new array back into the parameters rather than storing it into the <code>environment</code>.  For now this is an easy solution to implement and is reuseable until the feature is added to the framework itself.</p>
 

@@ -1,5 +1,5 @@
 <div class="post">
-    <div class="title"><?=$post->title?></div>
+    <h1><?=$post->title?></h1>
     <div class="date"><?=$this->formatPosted($post)?></div>
 
     <?$this->partial('share.php', array('t' => $post->title, 'u' => $this->urlFullFor($post), 'uid' => 'Top'))?>
@@ -15,3 +15,21 @@
 </div>
 
 <?$this->partial('disqus.php')?>
+
+<script src="<?=$urlJs?>highlight.nums.js"></script>
+<script src="<?=$urlJs?>php.js"></script>
+<script src="<?=$urlJs?>java.js"></script>
+<script src="<?=$urlJs?>scala.js"></script>
+<script src="<?=$urlJs?>bash.js"></script>
+<script src="<?=$urlJs?>json.js"></script>
+<script src="<?=$urlJs?>coffeescript.js"></script>
+<script>
+   hljs.LANGUAGES.php = php(hljs);
+   hljs.LANGUAGES.java = java(hljs);
+   hljs.LANGUAGES.scala = scala(hljs);
+   hljs.LANGUAGES.bash = bash(hljs);
+   hljs.LANGUAGES.json = json(hljs);
+   hljs.LANGUAGES.coffeescript = coffeescript(hljs);
+   hljs.lineNodes = true;
+   hljs.initHighlightingOnLoad();
+</script>

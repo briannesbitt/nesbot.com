@@ -6,26 +6,26 @@
 
 <p>Up until recently getting a PHP site running locally required the use of apache (using wammp/xampp), nginx or some other local webserver.  With the release of 5.4 a development server is now included in PHP and makes using it locally a breeze.  Even though it was introduced in 2010 I recently came across the Slim Framework.  This post will quickly get you up and running with Slim using <a href="http://getcomposer.org/">composer</a> and the new internal development server.</p>
 
-<pre class="brush: bash">
+<pre><code class="bash">
 mkdir slimapp
 cd slimapp
 curl -s http://getcomposer.org/installer | php
-</pre>
+</code></pre>
 
 <p>Next create a <code>composer.json</code> file in the web root that indicates your dependency on Slim:</p>
 
-<pre class="brush: jscript">
+<pre><code class="json">
 {
    "require": {"slim/slim": "1.6.*"}
 }
-</pre>
+</code></pre>
 
 <p>Next we kick off the install of Slim via composer and start the development server:</p>
 
-<pre class="brush: bash">
+<pre><code class="bash">
 php composer.phar install
 php -S 127.0.0.1:80
-</pre>
+</code></pre>
 
 <p>There is a nice feature in the PHP 5.4+ development server that helps us out when using friendly urls.</p>
 
@@ -35,7 +35,7 @@ php -S 127.0.0.1:80
 
 <p>Finally, create an <code>index.php</code> with the following contents:</p>
 
-<pre class="brush: php">
+<pre><code class="php">
 &lt;?
 require 'vendor/autoload.php';
 $app = new Slim();
@@ -45,7 +45,7 @@ $app->get('/', function () {
 });
 
 $app->run();
-</pre>
+</code></pre>
 
 <p>Then goto <code>http://127.0.0.1</code> in your browser and you should see <code>Hello World!</code>.</p>
 

@@ -8,17 +8,17 @@
 
 <p>Let's now create a new Play application.</p>
 
-<pre class="brush: bash">
+<pre><code class="bash">
 play new accessLogSample
 cd accessLogSample
-</pre>
+</code></pre>
 
 <p>Now add <code>- play -> accesslog 1.1</code> to your <code>conf/dependencies.yml</code> file.</p>
 
-<pre class="brush: bash">
+<pre><code class="bash">
 play dependencies
 play run
-</pre>
+</code></pre>
 
 <p>Now load <code>http://127.0.0.1:9000/</code> in your browser.  Thats it! You should see the requests and responses get logged to your configured accesslog file.</p>
 
