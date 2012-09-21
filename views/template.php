@@ -1,7 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-   <title>Brian Nesbitt</title>
+   <title><?php
+      $title = 'Consuming Knowledge';
+      if (isset($post)) {
+         $title = $post->title;
+      }
+      echo $title;?> -- Brian Nesbitt</title>
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
    <meta name="description" content="Developer who is always consuming knowledge. Startup enthusiast who doesn't enjoy being a drop in a bucket. Dividend stock investor. Lucky husband and father." />
    <link rel="shortcut icon" type="image/png" href="<?=$urlImg?>favicon.png">
