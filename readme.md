@@ -46,7 +46,7 @@ The `DocumentRoot` should be pointing to the `/your/install/path/nesbot.com/publ
 * The first line in the file needs to be `<?/*Post title!*/?>`.
 * Run `php genposts.php` from the project root. (this is automatically ran when in local mode)
 
-This will parse the files in the `views/posts/` directory and extract the date, slug and title for each post and generate a new `posts.php`.  You can view the generated `posts.php` to see what its all about.
+This will parse the files in the `views/posts/` directory and extract the date, slug and title for each post and generate a new `posts.php`.
 
 See the posts already in there for examples of functions you can use while writing posts.
 

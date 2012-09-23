@@ -10,7 +10,7 @@ $cssOutput = __DIR__.'/public/css/compiled.css';
 $lessCacheFile = __DIR__.'/less.cache';
 
 if (!file_exists($cssOutput)) {
-   unlink($lessCacheFile);
+   @unlink($lessCacheFile);
 }
 
 if (file_exists($lessCacheFile)) {
