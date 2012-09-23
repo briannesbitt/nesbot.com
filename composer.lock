@@ -1,6 +1,10 @@
 {
-    "hash": "bc465c390ce06a24f8b050793434da80",
+    "hash": "d2ede906ccea900411fcd96ecca0bdf3",
     "packages": [
+        {
+            "package": "leafo/lessphp",
+            "version": "v0.3.8"
+        },
         {
             "package": "nesbot/carbon",
             "version": "1.1.0"

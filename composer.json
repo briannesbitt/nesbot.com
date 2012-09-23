@@ -1,7 +1,8 @@
 {
    "require": {
       "slim/slim": "2.*",
-      "nesbot/carbon": "*"
+      "nesbot/carbon": "*",
+      "leafo/lessphp": "0.3.*"
    },
    "autoload": {
         "psr-0": {"Post": "lib/", "MasterView": "lib/", "BlogView": "lib/"}

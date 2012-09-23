@@ -10,8 +10,7 @@
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
    <meta name="description" content="Developer who is always consuming knowledge. Startup enthusiast who doesn't enjoy being a drop in a bucket. Dividend stock investor. Lucky husband and father." />
    <link rel="shortcut icon" type="image/png" href="<?=$urlImg?>favicon.png" />
-   <link rel="stylesheet/less" type="text/css" href="<?=$urlCss?>main.less" />
-   <script type="text/javascript" src="<?=$urlJs?>less.min.js"></script>
+   <link rel="stylesheet" type="text/css" href="<?=$urlCss?>compiled.css" />
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
 
    <?$this->partial('gatracker.php', array('tracker' => $this->gaTracker()))?>
