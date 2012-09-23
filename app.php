@@ -11,7 +11,6 @@ if (file_exists(__DIR__.'/env.live')) {
    }
 }
 
-
 $app = new \Slim\Slim(array('templates.path' => __DIR__.'/views/', 'mode' => $mode));
 $env = $app->environment();
 
@@ -35,7 +34,7 @@ $app->configureMode('local', function () use ($app, $env) {
    $app->config('debug', true);
 
    $out = array();
-   exec(sprintf("php %s/genposts.php", __DIR__), $out);
+   exec(sprintf("php %s/bundle.php", __DIR__), $out);
 
    if (count($out) > 1) {
       printf('<div><pre><code>%s</code></pre></div>', implode(PHP_EOL, $out));
