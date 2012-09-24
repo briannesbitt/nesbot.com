@@ -30,6 +30,22 @@ if (!is_array($cache) || $newCache["updated"] > $cache["updated"]) {
    }
 }
 
+// minify js
+$jsDir = __DIR__.'/public/js/';
+$jsOutput = 'compiled.js';
+
+$js = '';
+
+// for this site, the order of including doesn't matter
+foreach (scandir($jsDir) as $file) {
+   if (substr($file, -3) === '.js' && $file !== $jsOutput) {
+      $js .= \JShrink\Minifier::minify(file_get_contents($jsDir.$file));
+   }
+}
+
+file_put_contents($jsDir.$jsOutput, $js);
+gzip($jsDir.$jsOutput);
+
 
 function gzip($inFile, $outFile = null)
 {

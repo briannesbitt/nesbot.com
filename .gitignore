@@ -4,3 +4,4 @@ vendor/
 posts.php
 less.cache
 compiled.css*
+compiled.js*

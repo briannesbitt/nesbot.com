@@ -16,13 +16,6 @@
 
 <?$this->partial('disqus.php')?>
 
-<script src="<?=$urlJs?>highlight.nums.js"></script>
-<script src="<?=$urlJs?>php.js"></script>
-<script src="<?=$urlJs?>java.js"></script>
-<script src="<?=$urlJs?>scala.js"></script>
-<script src="<?=$urlJs?>bash.js"></script>
-<script src="<?=$urlJs?>json.js"></script>
-<script src="<?=$urlJs?>coffeescript.js"></script>
 <script>
    hljs.LANGUAGES.php = php(hljs);
    hljs.LANGUAGES.java = java(hljs);

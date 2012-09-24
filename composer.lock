@@ -1,5 +1,5 @@
 {
-    "hash": "d2ede906ccea900411fcd96ecca0bdf3",
+    "hash": "8b9448ae30a25a4eb28223993aa9bd75",
     "packages": [
         {
             "package": "leafo/lessphp",
@@ -12,6 +12,12 @@
         {
             "package": "slim/slim",
             "version": "2.1.0"
+        },
+        {
+            "package": "tedivm/jshrink",
+            "version": "dev-master",
+            "source-reference": "b3d0a82cc95b0ad4499bd10a57c7a3e843ebee8b",
+            "commit-date": "1344881763"
         }
     ],
     "packages-dev": null,
@@ -19,7 +25,7 @@
 
     ],
     "minimum-stability": "stable",
-    "stability-flags": [
-
-    ]
+    "stability-flags": {
+        "tedivm/jshrink": 20
+    }
 }
