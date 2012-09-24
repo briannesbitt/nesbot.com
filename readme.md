@@ -40,6 +40,14 @@ The `DocumentRoot` should be pointing to the `/your/install/path/nesbot.com/publ
 
 ## How do I?
 
+### Bundle assets
+
+To generate the posts file, compile the less and minify/combine the js run the following command from the project root.
+
+`php bundle.php`
+
+> This command is run on every page load when in local (development) mode.
+
 ### Add a post
 
 * Create a new file in `views/posts/` with a format of `yyyy-m-d-slug.php`.
