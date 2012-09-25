@@ -1,6 +1,7 @@
 {
    "require": {
       "slim/slim": "2.*",
+      "slim/extras": "2.*",
       "nesbot/carbon": "*",
       "leafo/lessphp": "0.3.*",
       "tedivm/jshrink": "dev-master"

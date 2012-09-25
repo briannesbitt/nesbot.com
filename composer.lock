@@ -1,5 +1,5 @@
 {
-    "hash": "8b9448ae30a25a4eb28223993aa9bd75",
+    "hash": "5441f666ec7897d0e332c947c75e509e",
     "packages": [
         {
             "package": "leafo/lessphp",
@@ -8,6 +8,10 @@
         {
             "package": "nesbot/carbon",
             "version": "1.1.0"
+        },
+        {
+            "package": "slim/extras",
+            "version": "2.0.0"
         },
         {
             "package": "slim/slim",

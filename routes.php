@@ -22,3 +22,7 @@ $app->get('/rss', function() use ($app, $posts) {
 $app->notFound(function () use ($app) {
    $app->view()->partial('404.php');
 });
+
+$app->error(function () use ($app) {
+   $app->view()->partial('../public/50x.html');
+});
