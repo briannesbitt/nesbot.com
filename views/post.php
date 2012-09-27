@@ -7,11 +7,12 @@
     <?$this->partial('share.php', array('t' => $post->title, 'u' => $this->urlFullFor($post), 'uid' => 'Bottom'))?>
 
     <div id="post-nav">
-        <span><?if($prev!=null) printf('<a href="%s"><- %s</a>', $this->urlFor($prev), $prev->title)?>&nbsp;</span>
+        <span><?if($prev!=null) printf('<img src="%sarrowl.gif" width="3" height="5" /> <a href="%s">%s</a>', $urlImg, $this->urlFor($prev), $prev->title)?>&nbsp;</span>
         <span><a href="/">Home</a></span>
-        <span><?if($next!=null) printf('<a href="%s">%s -></a>', $this->urlFor($next), $next->title)?>&nbsp;</span>
+        <span><?if($next!=null) printf('<a href="%s">%s</a> <img src="%sarrowr.gif" width="3" height="5" />', $this->urlFor($next), $next->title, $urlImg)?>&nbsp;</span>
         <div class="c"></div>
     </div>
+    <div class="c"></div>
 </div>
 
 <?$this->partial('disqus.php')?>

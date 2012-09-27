@@ -1,5 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
    <title><?php
       $title = 'Consuming Knowledge';
@@ -18,7 +18,7 @@
 <body>
 
 <div id="powered">
-   <a href="http://slimframework.com/" target="_blank">powered by <img src="<?=$urlImg?>slim.png" alt="Slim Framework" width="40" height="20" align="absmiddle" /></a>
+   <a href="http://slimframework.com/" target="_blank">powered by <img src="<?=$urlImg?>slim.png" alt="Slim Framework" width="40" height="20" /></a>
 </div>
 
 <div id="social">
