@@ -1,12 +1,14 @@
 <?php
-$loader = require 'vendor/autoload.php';
+$loader = require __DIR__.'/vendor/autoload.php';
 
 $mode = 'live';
 
-if (file_exists(__DIR__.'/env.live')) {
-   $mode = 'live';
+if (array_key_exists('MODE', $_SERVER)) {
+   $mode = $_SERVER['MODE'];
 } else {
-   if (file_exists(__DIR__.'/env.local')) {
+   if (file_exists(__DIR__.'/env.live')) {
+      $mode = 'live';
+   } elseif (file_exists(__DIR__.'/env.local')) {
       $mode = 'local';
    }
 }
