@@ -13,7 +13,7 @@ if (array_key_exists('MODE', $_SERVER)) {
    }
 }
 
-$logWriter = new \Slim\Extras\Log\DateTimeFileWriter(array('path' => __DIR__.'/logs', 'name_format' => 'Y-m-d.\l\o\g'));
+$logWriter = new \Slim\Extras\Log\DateTimeFileWriter(array('path' => __DIR__.'/logs'));
 
 $app = new \Slim\Slim(array('templates.path' => __DIR__.'/views/',
                             'mode' => $mode,
