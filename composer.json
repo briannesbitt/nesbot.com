@@ -7,6 +7,6 @@
       "tedivm/jshrink": "dev-master"
    },
    "autoload": {
-        "psr-0": {"Post": "lib/", "MasterView": "lib/", "BlogView": "lib/"}
+        "psr-0": {"Posts": "lib/", "Post": "lib/", "MasterView": "lib/", "BlogView": "lib/"}
     }
 }

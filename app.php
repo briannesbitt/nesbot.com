@@ -51,7 +51,9 @@ $app->configureMode('local', function () use ($app, $env) {
 
 $app->getLog()->setWriter($logWriter);
 
-require 'posts.php';
+list($postsData, $postsOrder) = require 'posts.php';
+$posts = new Posts($postsData, $postsOrder);
+
 $app->view(new BlogView($app, 'template.php', $posts));
 
 require 'routes.php';

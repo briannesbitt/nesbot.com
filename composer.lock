@@ -1,5 +1,5 @@
 {
-    "hash": "5441f666ec7897d0e332c947c75e509e",
+    "hash": "3b0c30fed8578d32523bb126adb74118",
     "packages": [
         {
             "name": "leafo/lessphp",
@@ -83,24 +83,24 @@
         },
         {
             "name": "slim/extras",
-            "version": "2.0.1",
+            "version": "2.0.3",
             "target-dir": "Slim/Extras",
             "source": {
                 "type": "git",
                 "url": "https://github.com/codeguy/Slim-Extras",
-                "reference": "2.0.1"
+                "reference": "2.0.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/codeguy/Slim-Extras/zipball/2.0.1",
-                "reference": "2.0.1",
+                "url": "https://github.com/codeguy/Slim-Extras/archive/2.0.3.zip",
+                "reference": "2.0.3",
                 "shasum": ""
             },
             "require": {
                 "slim/slim": ">=2.0.0",
                 "php": ">=5.3.0"
             },
-            "time": "2012-10-26 03:19:35",
+            "time": "2013-01-07 17:56:10",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -129,27 +129,28 @@
             "homepage": "http://github.com/codeguy/Slim-Extras",
             "keywords": [
                 "templating",
-                "extensions"
+                "extensions",
+                "middleware"
             ]
         },
         {
             "name": "slim/slim",
-            "version": "2.1.0",
+            "version": "2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/codeguy/Slim",
-                "reference": "2.1.0"
+                "reference": "2.2.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/codeguy/Slim/zipball/2.1.0",
-                "reference": "2.1.0",
+                "url": "https://github.com/codeguy/Slim/archive/2.2.0.zip",
+                "reference": "2.2.0",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0"
             },
-            "time": "2012-09-13 12:07:46",
+            "time": "2012-12-13 02:15:50",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -157,6 +158,7 @@
                     "Slim": "."
                 }
             },
+            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],

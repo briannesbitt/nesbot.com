@@ -1,7 +1,7 @@
 env.*
 composer.phar
 vendor/
-posts.php
+/posts.php
 less.cache
 compiled.css*
 compiled.js*
