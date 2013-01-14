@@ -13,11 +13,9 @@ if (array_key_exists('MODE', $_SERVER)) {
    }
 }
 
-$logWriter = new \Slim\Extras\Log\DateTimeFileWriter(array('path' => __DIR__.'/logs'));
+$logWriter = null;
 
-$app = new \Slim\Slim(array('templates.path' => __DIR__.'/views/',
-                            'mode' => $mode,
-                            'log.writer' => $logWriter));
+$app = new \Slim\Slim(array('templates.path' => __DIR__.'/views/', 'mode' => $mode));
 $env = $app->environment();
 
 $app->configureMode('live', function () use ($app, $env) {
@@ -28,6 +26,8 @@ $app->configureMode('live', function () use ($app, $env) {
    $env['URLJS'] = '/js/';
    $env['GATRACKER'] = 'UA-5684902-5';
    $app->config('debug', false);
+
+   $logWriter = new \Slim\Extras\Log\DateTimeFileWriter(array('path' => __DIR__.'/../logs'));
 });
 
 $app->configureMode('local', function () use ($app, $env) {
@@ -45,7 +45,11 @@ $app->configureMode('local', function () use ($app, $env) {
    if (count($out) > 1) {
       printf('<div><pre><code>%s</code></pre></div>', implode(PHP_EOL, $out));
    }
+
+   $logWriter = new \Slim\Extras\Log\DateTimeFileWriter(array('path' => __DIR__.'/logs'));
 });
+
+$app->getLog()->setWriter($logWriter);
 
 require 'posts.php';
 $app->view(new BlogView($app, 'template.php', $posts));
