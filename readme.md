@@ -2,7 +2,7 @@
 
 I am making the source code of my [personal site](http://nesbot.com) available publicly in case it helps anybody. It's developed using the [Slim Framework](http://slimframework.com).
 
-I am working on a blog post about the rewrite and it should get posted in the next few days.
+I am working on a blog post about the rewrite and it ~~should get posted in the next few days~~ finally got posted: [http://nesbot.com/2013/1/11/this-blog-trimmed-the-fat-now-powered-by-slim-2](http://nesbot.com/2013/1/11/this-blog-trimmed-the-fat-now-powered-by-slim-2).
 
 ## Installation
 
