@@ -11,15 +11,16 @@ interface IPosts
 class Posts implements IPosts
 {
    // [#] => Post
-   private $posts;
+   private $posts = array();
 
    // [slug] => #
-   private $postsOrder;
+   private $order = array();
 
-   public function __construct(array $posts, array $postsOrder)
+   public function add(Post $post)
    {
-      $this->posts = $posts;
-      $this->postsOrder = $postsOrder;
+      $next = count($this->posts);
+      $this->posts[$next] = $post;
+      $this->order[$post->slug] = $next;
    }
 
    public function findAll()
@@ -29,33 +30,33 @@ class Posts implements IPosts
 
    public function findBySlug($slug)
    {
-      if (!array_key_exists($slug, $this->postsOrder)) {
+      if (!array_key_exists($slug, $this->order)) {
          return null;
       }
 
-      $i = $this->postsOrder[$slug];
+      $i = $this->order[$slug];
 
       return array_key_exists($i, $this->posts) ? $this->posts[$i] : null;
    }
 
    public function next(Post $post)
    {
-      if (!array_key_exists($post->slug, $this->postsOrder)) {
+      if (!array_key_exists($post->slug, $this->order)) {
          return null;
       }
 
-      $i = $this->postsOrder[$post->slug];
+      $i = $this->order[$post->slug];
 
       return (++$i < count($this->posts)) ? $this->posts[$i] : null;
    }
 
    public function prev(Post $post)
    {
-      if (!array_key_exists($post->slug, $this->postsOrder)) {
+      if (!array_key_exists($post->slug, $this->order)) {
          return null;
       }
 
-      $i = $this->postsOrder[$post->slug];
+      $i = $this->order[$post->slug];
 
       return (--$i >= 0) ? $this->posts[$i] : null;
    }
