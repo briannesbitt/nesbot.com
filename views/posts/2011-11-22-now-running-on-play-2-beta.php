@@ -116,14 +116,14 @@ public static String urlFull(Post post)
 <h2>Blank lines in rendered HTML</h2>
 
 <p>
-When I was getting the <code>/rss</code> feed working I kept getting the open/save option in Firefox rather than the nice rss page that is usually shown.  It turns out that there were some blank lines at the top of the rendered xml. For most pages this does not matter. If you generate an RSS page though, blank lines at the top do matter - so it seems.  Tweaking the Scala template a bit I determined:
-   <ul class="list">
-   <li>If you just have a simple no args template file then there are no blank lines.</li>
-   <li>If you specify arguments at the top of the template "@(s : String)" then you will get 1 blank line.</li>
-   <li>If you start calling layouts... more blank lines.</li>
-   <li>@import lines don't generate a blank line.</li>
-   </ul>
-</p>
+When I was getting the <code>/rss</code> feed working I kept getting the open/save option in Firefox rather than the nice rss page that is usually shown.  It turns out that there were some blank lines at the top of the rendered xml. For most pages this does not matter. If you generate an RSS page though, blank lines at the top do matter - so it seems.  Tweaking the Scala template a bit I determined:</p>
+
+<ul class="list">
+<li>If you just have a simple no args template file then there are no blank lines.</li>
+<li>If you specify arguments at the top of the template "@(s : String)" then you will get 1 blank line.</li>
+<li>If you start calling layouts... more blank lines.</li>
+<li>@import lines don't generate a blank line.</li>
+</ul>
 
 <p>At first I used my trusty hammer (you know...the tool that can fix everything!) and hacked up the controller.</p>
 
