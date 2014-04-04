@@ -35,7 +35,7 @@
       <h2>about me</h2>
       <div id="about">
          <ul>
-            <li>3 yrs @ <a href="https://markido.com" target="_blank">Markido</a><br/><span class="sm">Co-Founder & CTO<br/></li>
+            <li>3 yrs @ <a href="https://slidebear.com" target="_blank">Markido</a><br/><span class="sm">Co-Founder & CTO<br/></li>
             <li>11 yrs @ <a href="http://www.fuelindustries.com" target="_blank">Fuel Industries</a><br/><span class="sm">Co-Founder & CTO<br/><a href="http://list.canadianbusiness.com/rankings/profit100/2008/DisplayProfile.aspx?profile=87" target="_blank">100 employees, $8M+ in '07</a><br/></span></li>
             <li>2 yrs @ <a href="http://www.lockheedmartin.com/ca.html" target="_blank">Lockheed Martin</a></li>
             <li>Comp Sys B. Eng. @ <a href="http://www.carleton.ca/admissions/programs/computer-systems-engineering/" target="_blank">Carleton U</a></li>
@@ -49,7 +49,7 @@
          </ul>
          <h2>what am i doing</h2>
          <ul>
-            <li><a href="http://markido.com" target="_blank">Markido PitchIt</a></li>
+            <li><a href="https://slidebear.com" title="Present your slides to anyone, anytime on any device." target="_blank">SlideBear</a></li>
             <li><a href="http://github.com/briannesbitt" target="_blank">github</a></li>
          </ul>
          <h2>what i play with</h2>
