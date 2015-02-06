@@ -1,28 +1,37 @@
 {
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
     "hash": "3b0c30fed8578d32523bb126adb74118",
     "packages": [
         {
             "name": "leafo/lessphp",
-            "version": "v0.3.8",
+            "version": "v0.3.9",
             "source": {
                 "type": "git",
-                "url": "http://github.com/leafo/lessphp",
-                "reference": "v0.3.8"
+                "url": "https://github.com/leafo/lessphp.git",
+                "reference": "a11a6141b5715162b933c405379765d817891c5d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/leafo/lessphp/zipball/v0.3.8",
-                "reference": "v0.3.8",
+                "url": "https://api.github.com/repos/leafo/lessphp/zipball/a11a6141b5715162b933c405379765d817891c5d",
+                "reference": "a11a6141b5715162b933c405379765d817891c5d",
                 "shasum": ""
             },
-            "time": "2012-08-19 10:16:09",
             "type": "library",
-            "installation-source": "dist",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.3-dev"
+                }
+            },
             "autoload": {
                 "classmap": [
                     "lessc.inc.php"
                 ]
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT",
                 "GPL-3.0"
@@ -35,34 +44,36 @@
                 }
             ],
             "description": "lessphp is a compiler for LESS written in PHP.",
-            "homepage": "http://leafo.net/lessphp/"
+            "homepage": "http://leafo.net/lessphp/",
+            "time": "2013-03-02 16:13:31"
         },
         {
             "name": "nesbot/carbon",
-            "version": "1.2.0",
+            "version": "1.10.0",
             "source": {
                 "type": "git",
-                "url": "git://github.com/briannesbitt/Carbon.git",
-                "reference": "1.2.0"
+                "url": "https://github.com/briannesbitt/Carbon.git",
+                "reference": "9b42a1aec56011c2ac4d75c0ddad0794762344fc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/briannesbitt/Carbon/zipball/1.2.0",
-                "reference": "1.2.0",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/9b42a1aec56011c2ac4d75c0ddad0794762344fc",
+                "reference": "9b42a1aec56011c2ac4d75c0ddad0794762344fc",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0"
             },
-            "time": "2012-10-14 17:41:18",
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
             "type": "library",
-            "installation-source": "dist",
             "autoload": {
                 "psr-0": {
-                    "Carbon": "."
+                    "Carbon": "src"
                 }
             },
-            "notification-url": "http://packagist.org/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -76,10 +87,11 @@
             "description": "A simple API extension for DateTime.",
             "homepage": "https://github.com/briannesbitt/Carbon",
             "keywords": [
-                "time",
                 "date",
-                "datetime"
-            ]
+                "datetime",
+                "time"
+            ],
+            "time": "2014-07-18 03:44:47"
         },
         {
             "name": "slim/extras",
@@ -97,12 +109,10 @@
                 "shasum": ""
             },
             "require": {
-                "slim/slim": ">=2.0.0",
-                "php": ">=5.3.0"
+                "php": ">=5.3.0",
+                "slim/slim": ">=2.0.0"
             },
-            "time": "2013-01-07 17:56:10",
             "type": "library",
-            "installation-source": "dist",
             "autoload": {
                 "psr-0": {
                     "Twig_Extensions_": "Views/Extension/",
@@ -128,37 +138,39 @@
             "description": "Extras package for the Slim Framework",
             "homepage": "http://github.com/codeguy/Slim-Extras",
             "keywords": [
-                "templating",
                 "extensions",
-                "middleware"
-            ]
+                "middleware",
+                "templating"
+            ],
+            "time": "2013-01-07 17:56:10"
         },
         {
             "name": "slim/slim",
-            "version": "2.2.0",
+            "version": "2.4.3",
             "source": {
                 "type": "git",
-                "url": "https://github.com/codeguy/Slim",
-                "reference": "2.2.0"
+                "url": "https://github.com/codeguy/Slim.git",
+                "reference": "4906b77a07c7bd6ff1a99aea903e940a2d4fa106"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/codeguy/Slim/archive/2.2.0.zip",
-                "reference": "2.2.0",
+                "url": "https://api.github.com/repos/codeguy/Slim/zipball/4906b77a07c7bd6ff1a99aea903e940a2d4fa106",
+                "reference": "4906b77a07c7bd6ff1a99aea903e940a2d4fa106",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0"
             },
-            "time": "2012-12-13 02:15:50",
+            "suggest": {
+                "ext-mcrypt": "Required for HTTP cookie encryption"
+            },
             "type": "library",
-            "installation-source": "dist",
             "autoload": {
                 "psr-0": {
                     "Slim": "."
                 }
             },
-            "notification-url": "http://packagist.org/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -175,34 +187,38 @@
                 "microframework",
                 "rest",
                 "router"
-            ]
+            ],
+            "time": "2014-04-05 18:33:59"
         },
         {
             "name": "tedivm/jshrink",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/tedivm/JShrink",
-                "reference": "6441023c5ba0dd449f184a625e5c5105f69c18d1"
+                "url": "https://github.com/tedious/JShrink.git",
+                "reference": "4c2c2ca8c467444c4a6b90058174f1e9cbc65bff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/tedivm/JShrink/archive/6441023c5ba0dd449f184a625e5c5105f69c18d1.zip",
-                "reference": "6441023c5ba0dd449f184a625e5c5105f69c18d1",
+                "url": "https://api.github.com/repos/tedious/JShrink/zipball/4c2c2ca8c467444c4a6b90058174f1e9cbc65bff",
+                "reference": "4c2c2ca8c467444c4a6b90058174f1e9cbc65bff",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0"
             },
-            "time": "2012-11-26 05:07:00",
+            "require-dev": {
+                "fabpot/php-cs-fixer": "0.4.0",
+                "phpunit/phpunit": "4.0.*",
+                "satooshi/php-coveralls": "dev-master"
+            },
             "type": "library",
-            "installation-source": "source",
             "autoload": {
                 "psr-0": {
                     "JShrink": "src/"
                 }
             },
-            "notification-url": "http://packagist.org/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -213,19 +229,28 @@
                 }
             ],
             "description": "Javascript Minifier built in PHP",
-            "homepage": "http://github.com/tedivm/JShrink",
+            "homepage": "http://github.com/tedious/JShrink",
             "keywords": [
                 "javascript",
                 "minifier"
-            ]
+            ],
+            "time": "2014-05-21 08:12:45"
         }
     ],
-    "packages-dev": null,
+    "packages-dev": [
+
+    ],
     "aliases": [
 
     ],
     "minimum-stability": "stable",
     "stability-flags": {
         "tedivm/jshrink": 20
-    }
+    },
+    "platform": [
+
+    ],
+    "platform-dev": [
+
+    ]
 }

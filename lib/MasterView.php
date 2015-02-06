@@ -18,7 +18,7 @@ class MasterView extends \Slim\View
       $this->masterTemplate = $masterTemplate;
    }
 
-   public function render($template)
+   public function render($template, $data = null)
    {
       $this->setData('childView', $template);
       $this->injectDefaultVariables();
