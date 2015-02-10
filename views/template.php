@@ -11,7 +11,8 @@
    <meta name="description" content="Developer who is always consuming knowledge. Startup enthusiast who doesn't enjoy being a drop in a bucket. Dividend stock investor. Lucky husband and father." />
    <link rel="shortcut icon" type="image/png" href="<?=$urlImg?>favicon.png" />
    <link rel="stylesheet" type="text/css" href="<?=$urlCss?>compiled.css" />
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js" type="text/javascript"></script>
+   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/tomorrow-night.min.css">
+   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" type="text/javascript"></script>
    <script src="<?=$urlJs?>compiled.js" type="text/javascript"></script>
    <?$this->partial('gatracker.php', array('tracker' => $this->gaTracker()))?>
 </head>
@@ -45,26 +46,28 @@
          <h2>contact</h2>
          <ul>
             <li><a href="http://twitter.com/NesbittBrian">twitter.com/NesbittBrian</a></li>
-            <li><a href="mailto:brian@nesbot.com">brian@nesbot.com</a></li>
+            <li>brian@nesbot.com</li>
          </ul>
-         <h2>what am i doing</h2>
+         <h2>what i am doing</h2>
          <ul>
             <li><a href="https://markido.com" title="Create better PowerPoint presentations in less time." target="_blank"><i>Engage</i></a></li>
-            <li><a href="http://github.com/briannesbitt" target="_blank">github</a></li>
+            <li><a href="http://carbon.nesbot.com" target="_blank">Carbon</a></li>
          </ul>
          <h2>what i play with</h2>
          <ul>
             <li><a href="http://sparkjava.com/" target="_blank">sparkjava.com</a></li>
             <li><a href="http://www.dropwizard.io/" target="_blank">dropwizard.io</a></li>
             <li><a href="http://slimframework.com/" target="_blank">slimframework.com</a></li>
-            <li><a href="http://www.ottawasenators.com/" target="_blank">ottawasenators.com</a></li>
-            <li><a href="http://deservefinancialfreedom.com" target="_blank">deservefinancialfreedom.com</a></li>
+            <li><a href="http://github.com/briannesbitt" target="_blank">github</a></li>
          </ul>
       </div>
    </div>
 
    <div id="content"><?$this->partial($childView, $this->getData())?></div>
 </div>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
 
 </body>
 </html>

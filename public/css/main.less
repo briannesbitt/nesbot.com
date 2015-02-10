@@ -101,9 +101,12 @@ a {
    span:nth-child(3) {float:right;text-align:right;width:40%;}
 }
 
-pre code {
-    margin:0 0 1em 0;
+#content pre code {
+    margin:0 0 20px 0;
     line-height:1.1em !important;
+    border:0;
 }
 
-@import 'syntax-github.less';
+#content pre code::first-line {
+   line-height:0px;
+}
